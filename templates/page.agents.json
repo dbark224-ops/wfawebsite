@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -13,14 +22,6 @@
     },
     "real_estate_agent_showcase": {
       "type": "real-estate-agent",
-      "name": "Real Estate AI Agent",
-      "settings": {
-        "eyebrow": "Packaged AI Agent",
-        "heading": "Real Estate AI Agent",
-        "intro": "An always-on operations teammate for modern real estate teams — handling inquiry response, daily market intelligence, and repetitive admin workflows.",
-        "cta_label": "Book a demo",
-        "cta_link": ""
-      },
       "blocks": {
         "feature_1": {
           "type": "feature",
@@ -72,11 +73,85 @@
         "feature_4",
         "feature_5",
         "feature_6"
-      ]
+      ],
+      "name": "Real Estate AI Agent",
+      "settings": {
+        "eyebrow": "Packaged AI Agent",
+        "heading": "Real Estate AI Agent",
+        "intro": "An always-on operations teammate for modern real estate teams — handling inquiry response, daily market intelligence, and repetitive admin workflows.",
+        "cta_label": "Book a demo",
+        "cta_link": "",
+        "desktop_caption": "Desktop view",
+        "mobile_caption": "Mobile view"
+      }
+    },
+    "blocks_8xfMJG": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_d67d9f8_RQQRGA": {
+          "type": "ai_gen_block_d67d9f8",
+          "settings": {
+            "title": "Schedule a Discovery Call",
+            "description": "Let's discuss how we can help you achieve your goals. Fill out the form below to book your free consultation.",
+            "button_text": "Book my call",
+            "success_message": "Thank you! We'll be in touch soon to confirm your discovery call.",
+            "desktop_width_percent": 100,
+            "border_radius": 14,
+            "background_color": "#f5f5f5",
+            "text_color": "#000000",
+            "input_background_color": "#ffffff",
+            "input_border_color": "#dfdfdf",
+            "button_color": "#000000",
+            "button_text_color": "#ffffff",
+            "button_hover_color": "#333333",
+            "success_bg_color": "#e1f5e1",
+            "success_text_color": "#006400",
+            "error_bg_color": "#ffe6e6",
+            "error_text_color": "#d82c0d",
+            "title_size": 32,
+            "description_size": 16,
+            "input_border_radius": 4,
+            "button_border_radius": 14
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_d67d9f8_RQQRGA"
+      ],
+      "name": "Discovery call booking",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
     }
   },
   "order": [
     "main",
-    "real_estate_agent_showcase"
+    "real_estate_agent_showcase",
+    "blocks_8xfMJG"
   ]
 }
