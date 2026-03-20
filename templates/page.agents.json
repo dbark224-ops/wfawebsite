@@ -81,8 +81,10 @@
         "intro": "An always-on operations teammate for modern real estate teams — handling inquiry response, daily market intelligence, and repetitive admin workflows.",
         "cta_label": "Book a demo",
         "cta_link": "",
-        "desktop_caption": "Desktop view",
-        "mobile_caption": "Mobile view"
+        "desktop_screenshot": "shopify://shop_images/Screenshot_2026-03-19_at_9.26.43_PM.png",
+        "desktop_caption": "Desktop Web UI Dashboard",
+        "mobile_screenshot": "shopify://shop_images/IMG_4694.png",
+        "mobile_caption": "Slack Messaging UI"
       }
     },
     "blocks_8xfMJG": {
@@ -132,7 +134,7 @@
         "section_width": "page-width",
         "section_height": "",
         "section_height_custom": 50,
-        "color_scheme": "",
+        "color_scheme": "scheme-2",
         "background_media": "none",
         "video_position": "cover",
         "background_image_position": "cover",
