@@ -148,45 +148,47 @@
       {% endif %}
     </div>
 
-    <div class="waa-agent-ui-strip">
-      <figure class="waa-agent-shot waa-agent-shot--desktop">
-        <div class="waa-agent-device-shell">
-          {% if section.settings.desktop_screenshot != blank %}
-            {{ section.settings.desktop_screenshot | image_url: width: 1800 | image_tag: class: 'waa-agent-shot-image', loading: 'lazy', alt: section.settings.desktop_caption }}
-          {% else %}
-            <div class="waa-agent-placeholder">
-              <span>Desktop screenshot placeholder</span>
-            </div>
-          {% endif %}
-        </div>
-        {% if section.settings.desktop_caption != blank %}
-          <figcaption>{{ section.settings.desktop_caption | escape }}</figcaption>
-        {% endif %}
-      </figure>
+    <div class="waa-agent-main">
+      <div class="waa-agent-grid">
+        {% for block in section.blocks %}
+          <article class="waa-agent-card" {{ block.shopify_attributes }}>
+            <h3 class="waa-agent-card-title">{{ block.settings.title | escape }}</h3>
+            <p class="waa-agent-card-text">{{ block.settings.description | escape }}</p>
+          </article>
+        {% endfor %}
+      </div>
 
-      <figure class="waa-agent-shot waa-agent-shot--mobile">
-        <div class="waa-agent-device-shell waa-agent-device-shell--mobile">
-          {% if section.settings.mobile_screenshot != blank %}
-            {{ section.settings.mobile_screenshot | image_url: width: 900 | image_tag: class: 'waa-agent-shot-image', loading: 'lazy', alt: section.settings.mobile_caption }}
-          {% else %}
-            <div class="waa-agent-placeholder">
-              <span>Mobile screenshot placeholder</span>
-            </div>
+      <div class="waa-agent-ui-strip">
+        <figure class="waa-agent-shot waa-agent-shot--desktop">
+          <div class="waa-agent-device-shell">
+            {% if section.settings.desktop_screenshot != blank %}
+              {{ section.settings.desktop_screenshot | image_url: width: 1800 | image_tag: class: 'waa-agent-shot-image', loading: 'lazy', alt: section.settings.desktop_caption }}
+            {% else %}
+              <div class="waa-agent-placeholder">
+                <span>Desktop screenshot placeholder</span>
+              </div>
+            {% endif %}
+          </div>
+          {% if section.settings.desktop_caption != blank %}
+            <figcaption>{{ section.settings.desktop_caption | escape }}</figcaption>
           {% endif %}
-        </div>
-        {% if section.settings.mobile_caption != blank %}
-          <figcaption>{{ section.settings.mobile_caption | escape }}</figcaption>
-        {% endif %}
-      </figure>
-    </div>
+        </figure>
 
-    <div class="waa-agent-grid">
-      {% for block in section.blocks %}
-        <article class="waa-agent-card" {{ block.shopify_attributes }}>
-          <h3 class="waa-agent-card-title">{{ block.settings.title | escape }}</h3>
-          <p class="waa-agent-card-text">{{ block.settings.description | escape }}</p>
-        </article>
-      {% endfor %}
+        <figure class="waa-agent-shot waa-agent-shot--mobile">
+          <div class="waa-agent-device-shell waa-agent-device-shell--mobile">
+            {% if section.settings.mobile_screenshot != blank %}
+              {{ section.settings.mobile_screenshot | image_url: width: 900 | image_tag: class: 'waa-agent-shot-image', loading: 'lazy', alt: section.settings.mobile_caption }}
+            {% else %}
+              <div class="waa-agent-placeholder">
+                <span>Mobile screenshot placeholder</span>
+              </div>
+            {% endif %}
+          </div>
+          {% if section.settings.mobile_caption != blank %}
+            <figcaption>{{ section.settings.mobile_caption | escape }}</figcaption>
+          {% endif %}
+        </figure>
+      </div>
     </div>
   </div>
 </section>
@@ -249,20 +251,26 @@
     box-shadow: 0 10px 28px rgba(23, 152, 173, 0.35);
   }
 
+  .waa-agent-showcase--{{ section.id }} .waa-agent-main {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 28px;
+    align-items: start;
+  }
+
+  @media (min-width: 980px) {
+    .waa-agent-showcase--{{ section.id }} .waa-agent-main {
+      grid-template-columns: 1.2fr 1fr;
+      gap: 30px;
+    }
+  }
+
   .waa-agent-showcase--{{ section.id }} .waa-agent-ui-strip {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 22px;
-    margin-bottom: 34px;
-  }
-
-  @media (min-width: 900px) {
-    .waa-agent-showcase--{{ section.id }} .waa-agent-ui-strip {
-      grid-template-columns: 2fr 1fr;
-      align-items: start;
-      gap: 24px;
-      margin-bottom: 40px;
-    }
+    gap: 18px;
+    position: sticky;
+    top: 110px;
   }
 
   .waa-agent-showcase--{{ section.id }} .waa-agent-shot {
