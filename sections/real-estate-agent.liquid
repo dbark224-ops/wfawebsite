@@ -1,0 +1,224 @@
+{% schema %}
+{
+  "name": "Real Estate AI Agent",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Packaged AI Agent"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Real Estate AI Agent"
+    },
+    {
+      "type": "textarea",
+      "id": "intro",
+      "label": "Intro",
+      "default": "An always-on operations teammate for modern real estate teams — handling inquiry response, daily market intelligence, and repetitive admin workflows."
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA label",
+      "default": "Book a demo"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "limit": 8,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Feature title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Describe the feature."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Real Estate AI Agent",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Smart inquiry email handling",
+            "description": "Monitors inbound email and automatically responds to in-scope property inquiries using your approved property data and latest inspection details."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Human-in-the-loop approvals",
+            "description": "If context is missing or a decision is needed, it asks in DM before acting. Example: private inspection requests are checked against calendar availability, then run past the agent before confirmation."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Daily market movement reporting",
+            "description": "Scans target postcodes and compares against the previous day to flag newly listed, removed, and price-changed properties in Slack/email reports."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Listing and inspection awareness",
+            "description": "Tracks listing updates and inspection changes so responses stay aligned with what is currently live in market."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Action-taking assistant",
+            "description": "Supports real web/computer tasks on request — CRM updates, listing portal checks, and operational admin actions while agents are on the move."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Automated social content workflows",
+            "description": "Connected to templated API and social media templates so listing and sold content can be produced quickly and consistently."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<section class="waa-agent-showcase">
+  <div class="waa-agent-container">
+    <div class="waa-agent-header">
+      {% if section.settings.eyebrow != blank %}
+        <p class="waa-agent-eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      {% endif %}
+      {% if section.settings.heading != blank %}
+        <h2 class="waa-agent-title">{{ section.settings.heading | escape }}</h2>
+      {% endif %}
+      {% if section.settings.intro != blank %}
+        <p class="waa-agent-intro">{{ section.settings.intro | escape }}</p>
+      {% endif %}
+      {% if section.settings.cta_label != blank and section.settings.cta_link != blank %}
+        <a class="waa-agent-cta" href="{{ section.settings.cta_link }}">{{ section.settings.cta_label | escape }}</a>
+      {% endif %}
+    </div>
+
+    <div class="waa-agent-grid">
+      {% for block in section.blocks %}
+        <article class="waa-agent-card" {{ block.shopify_attributes }}>
+          <h3 class="waa-agent-card-title">{{ block.settings.title | escape }}</h3>
+          <p class="waa-agent-card-text">{{ block.settings.description | escape }}</p>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .waa-agent-showcase {
+    background: #0f0326;
+    padding: 88px 24px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .waa-agent-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .waa-agent-header {
+    max-width: 800px;
+    margin: 0 auto 48px;
+    text-align: center;
+  }
+
+  .waa-agent-eyebrow {
+    color: #2dd4bf;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0 0 12px;
+    font-weight: 600;
+  }
+
+  .waa-agent-title {
+    color: #ffffff;
+    font-size: clamp(2rem, 5.2vw, 3rem);
+    line-height: 1.15;
+    margin: 0 0 14px;
+    letter-spacing: -0.02em;
+  }
+
+  .waa-agent-intro {
+    color: #94a3b8;
+    margin: 0 auto;
+    line-height: 1.7;
+    font-size: 1.05rem;
+  }
+
+  .waa-agent-cta {
+    display: inline-block;
+    margin-top: 24px;
+    padding: 12px 20px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #2dd4bf, #60a5fa);
+    color: #08101f;
+    text-decoration: none;
+    font-weight: 700;
+  }
+
+  .waa-agent-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  @media (min-width: 800px) {
+    .waa-agent-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+  }
+
+  .waa-agent-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 18px;
+    padding: 24px;
+    backdrop-filter: blur(8px);
+  }
+
+  .waa-agent-card-title {
+    color: #ffffff;
+    font-size: 1.15rem;
+    margin: 0 0 8px;
+    line-height: 1.4;
+  }
+
+  .waa-agent-card-text {
+    color: #94a3b8;
+    margin: 0;
+    line-height: 1.65;
+    font-size: 0.97rem;
+  }
+</style>

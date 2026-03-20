@@ -1,0 +1,82 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "color_scheme": "",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    },
+    "real_estate_agent_showcase": {
+      "type": "real-estate-agent",
+      "name": "Real Estate AI Agent",
+      "settings": {
+        "eyebrow": "Packaged AI Agent",
+        "heading": "Real Estate AI Agent",
+        "intro": "An always-on operations teammate for modern real estate teams — handling inquiry response, daily market intelligence, and repetitive admin workflows.",
+        "cta_label": "Book a demo",
+        "cta_link": ""
+      },
+      "blocks": {
+        "feature_1": {
+          "type": "feature",
+          "settings": {
+            "title": "Smart inquiry email handling",
+            "description": "Monitors inbound email and automatically responds to in-scope property inquiries using approved property data and current inspection details."
+          }
+        },
+        "feature_2": {
+          "type": "feature",
+          "settings": {
+            "title": "Human-in-the-loop approvals",
+            "description": "When context is missing or a decision is needed, it asks in DM before acting. Private inspection requests are checked against calendar availability then run past the agent before confirmation."
+          }
+        },
+        "feature_3": {
+          "type": "feature",
+          "settings": {
+            "title": "Daily market movement reporting",
+            "description": "Scans target postcodes and compares against yesterday to flag newly listed, removed, and price-changed properties in Slack/email reports."
+          }
+        },
+        "feature_4": {
+          "type": "feature",
+          "settings": {
+            "title": "Listing and inspection awareness",
+            "description": "Tracks listing and inspection changes so the assistant stays aligned with what is currently live in market."
+          }
+        },
+        "feature_5": {
+          "type": "feature",
+          "settings": {
+            "title": "Action-taking assistant",
+            "description": "Can complete real web/computer tasks on demand — CRM updates, portal checks, and routine operational actions while agents are on the move."
+          }
+        },
+        "feature_6": {
+          "type": "feature",
+          "settings": {
+            "title": "Automated social content workflows",
+            "description": "Connected to templated API and social templates so listing and sold content can be produced quickly and consistently."
+          }
+        }
+      },
+      "block_order": [
+        "feature_1",
+        "feature_2",
+        "feature_3",
+        "feature_4",
+        "feature_5",
+        "feature_6"
+      ]
+    }
+  },
+  "order": [
+    "main",
+    "real_estate_agent_showcase"
+  ]
+}
