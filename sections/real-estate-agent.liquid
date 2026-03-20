@@ -149,30 +149,15 @@
     </div>
 
     <div class="waa-agent-main">
-      <div class="waa-agent-grid">
-        {% for block in section.blocks %}
-          <article class="waa-agent-card" {{ block.shopify_attributes }}>
-            <h3 class="waa-agent-card-title">{{ block.settings.title | escape }}</h3>
-            <p class="waa-agent-card-text">{{ block.settings.description | escape }}</p>
-          </article>
-        {% endfor %}
-      </div>
-
-      <div class="waa-agent-ui-strip">
-        <figure class="waa-agent-shot waa-agent-shot--desktop">
-          <div class="waa-agent-device-shell">
-            {% if section.settings.desktop_screenshot != blank %}
-              {{ section.settings.desktop_screenshot | image_url: width: 1800 | image_tag: class: 'waa-agent-shot-image', loading: 'lazy', alt: section.settings.desktop_caption }}
-            {% else %}
-              <div class="waa-agent-placeholder">
-                <span>Desktop screenshot placeholder</span>
-              </div>
-            {% endif %}
-          </div>
-          {% if section.settings.desktop_caption != blank %}
-            <figcaption>{{ section.settings.desktop_caption | escape }}</figcaption>
-          {% endif %}
-        </figure>
+      <div class="waa-agent-top">
+        <div class="waa-agent-grid">
+          {% for block in section.blocks %}
+            <article class="waa-agent-card" {{ block.shopify_attributes }}>
+              <h3 class="waa-agent-card-title">{{ block.settings.title | escape }}</h3>
+              <p class="waa-agent-card-text">{{ block.settings.description | escape }}</p>
+            </article>
+          {% endfor %}
+        </div>
 
         <figure class="waa-agent-shot waa-agent-shot--mobile">
           <div class="waa-agent-device-shell waa-agent-device-shell--mobile">
@@ -189,6 +174,21 @@
           {% endif %}
         </figure>
       </div>
+
+      <figure class="waa-agent-shot waa-agent-shot--desktop waa-agent-shot--desktop-wide">
+        <div class="waa-agent-device-shell">
+          {% if section.settings.desktop_screenshot != blank %}
+            {{ section.settings.desktop_screenshot | image_url: width: 1800 | image_tag: class: 'waa-agent-shot-image', loading: 'lazy', alt: section.settings.desktop_caption }}
+          {% else %}
+            <div class="waa-agent-placeholder">
+              <span>Desktop screenshot placeholder</span>
+            </div>
+          {% endif %}
+        </div>
+        {% if section.settings.desktop_caption != blank %}
+          <figcaption>{{ section.settings.desktop_caption | escape }}</figcaption>
+        {% endif %}
+      </figure>
     </div>
   </div>
 </section>
@@ -254,23 +254,27 @@
   .waa-agent-showcase--{{ section.id }} .waa-agent-main {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 28px;
+    gap: 26px;
+    align-items: start;
+  }
+
+  .waa-agent-showcase--{{ section.id }} .waa-agent-top {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 22px;
     align-items: start;
   }
 
   @media (min-width: 980px) {
-    .waa-agent-showcase--{{ section.id }} .waa-agent-main {
-      grid-template-columns: 1.2fr 1fr;
-      gap: 30px;
+    .waa-agent-showcase--{{ section.id }} .waa-agent-top {
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
     }
-  }
 
-  .waa-agent-showcase--{{ section.id }} .waa-agent-ui-strip {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 18px;
-    position: sticky;
-    top: 110px;
+    .waa-agent-showcase--{{ section.id }} .waa-agent-shot--mobile {
+      position: sticky;
+      top: 110px;
+    }
   }
 
   .waa-agent-showcase--{{ section.id }} .waa-agent-shot {
@@ -288,8 +292,14 @@
 
   .waa-agent-showcase--{{ section.id }} .waa-agent-device-shell--mobile {
     border-radius: 28px;
-    max-width: 420px;
+    max-width: 380px;
     margin: 0 auto;
+  }
+
+  @media (min-width: 980px) {
+    .waa-agent-showcase--{{ section.id }} .waa-agent-device-shell--mobile {
+      max-width: 100%;
+    }
   }
 
   .waa-agent-showcase--{{ section.id }} .waa-agent-shot-image {
@@ -314,7 +324,17 @@
   }
 
   .waa-agent-showcase--{{ section.id }} .waa-agent-shot--mobile .waa-agent-placeholder {
-    min-height: 420px;
+    min-height: 460px;
+  }
+
+  @media (min-width: 980px) {
+    .waa-agent-showcase--{{ section.id }} .waa-agent-shot--mobile .waa-agent-placeholder {
+      min-height: 760px;
+    }
+  }
+
+  .waa-agent-showcase--{{ section.id }} .waa-agent-shot--desktop-wide .waa-agent-placeholder {
+    min-height: 300px;
   }
 
   .waa-agent-showcase--{{ section.id }} .waa-agent-shot figcaption {
