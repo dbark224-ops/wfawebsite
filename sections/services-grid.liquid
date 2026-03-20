@@ -1,0 +1,202 @@
+{% schema %}
+{
+  "name": "AI Services Grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "Built for your business needs."
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Section Subheading",
+      "default": "We cut through the AI noise to deliver practical, robust solutions that save time and increase revenue."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "service",
+      "name": "Service Card",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon Type",
+          "options": [
+            { "value": "bot", "label": "Robot/Agent" },
+            { "value": "code", "label": "Code/Integration" },
+            { "value": "education", "label": "Education/Cap" }
+          ],
+          "default": "bot"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Service Title",
+          "default": "Service Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Service Description",
+          "default": "Describe your service here."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "AI Services Grid",
+      "blocks": [
+        {
+          "type": "service",
+          "settings": {
+            "icon": "bot",
+            "title": "Bespoke AI Agents",
+            "description": "Custom-built AI personal assistants integrated into your daily operations to automate repetitive workflows."
+          }
+        },
+        {
+          "type": "service",
+          "settings": {
+            "icon": "code",
+            "title": "ChatGPT Integrations",
+            "description": "Public apps to help consumers access your products, or internal tools to process your secure company data."
+          }
+        },
+        {
+          "type": "service",
+          "settings": {
+            "icon": "education",
+            "title": "AI Education & Upskilling",
+            "description": "Overwhelmed by AI? We provide tailored workshops and courses to get your employees confident and capable."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<section class="waa-services">
+  <div class="waa-services-container">
+    <div class="waa-services-header">
+      <h2 class="waa-services-title">{{ section.settings.heading | escape }}</h2>
+      <p class="waa-services-subheading">{{ section.settings.subheading | escape }}</p>
+    </div>
+
+    <div class="waa-services-grid">
+      {% for block in section.blocks %}
+        <div class="waa-service-card" {{ block.shopify_attributes }}>
+          <div class="waa-service-icon waa-icon-{{ block.settings.icon }}">
+            {% case block.settings.icon %}
+              {% when 'bot' %}
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
+              {% when 'code' %}
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
+              {% when 'education' %}
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/></svg>
+            {% endcase %}
+          </div>
+          <h3 class="waa-service-card-title">{{ block.settings.title | escape }}</h3>
+          <p class="waa-service-card-text">{{ block.settings.description | escape }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .waa-services {
+    background-color: #0f0326;
+    padding: 80px 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .waa-services-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .waa-services-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .waa-services-title {
+    color: #ffffff;
+    font-size: clamp(2rem, 5vw, 2.5rem);
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .waa-services-subheading {
+    color: #94a3b8;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .waa-services-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 32px;
+  }
+
+  @media (min-width: 768px) {
+    .waa-services-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .waa-service-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 40px;
+    border-radius: 24px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .waa-service-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  }
+
+  .waa-service-icon {
+    margin-bottom: 24px;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+  }
+
+  .waa-icon-bot { background: rgba(45, 212, 191, 0.1); color: #2dd4bf; }
+  .waa-icon-code { background: rgba(96, 165, 250, 0.1); color: #60a5fa; }
+  .waa-icon-education { background: rgba(168, 85, 247, 0.1); color: #a855f7; }
+
+  .waa-service-card-title {
+    color: #ffffff;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .waa-service-card-text {
+    color: #94a3b8;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    flex-grow: 1;
+  }
+</style>

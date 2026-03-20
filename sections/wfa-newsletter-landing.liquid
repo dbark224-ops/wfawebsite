@@ -1,0 +1,554 @@
+{% liquid
+  assign story_count = section.blocks.size
+%}
+
+<section id="wfa-newsletter-landing-{{ section.id }}" class="wfa-newsletter-landing">
+  <div class="wfa-newsletter-landing__inner page-width">
+    <div class="wfa-newsletter-landing__grid">
+
+      <div class="wfa-newsletter-landing__content">
+        {% if section.settings.eyebrow != blank %}
+          <p class="wfa-newsletter-landing__eyebrow">{{ section.settings.eyebrow }}</p>
+        {% endif %}
+
+        {% if section.settings.heading != blank %}
+          <h2 class="wfa-newsletter-landing__heading">{{ section.settings.heading }}</h2>
+        {% endif %}
+
+        {% if section.settings.subheading != blank %}
+          <div class="wfa-newsletter-landing__subheading rte">
+            {{ section.settings.subheading }}
+          </div>
+        {% endif %}
+
+        <div class="wfa-newsletter-landing__chips">
+          {% if section.settings.chip_1 != blank %}
+            <span class="wfa-newsletter-landing__chip">{{ section.settings.chip_1 }}</span>
+          {% endif %}
+          {% if section.settings.chip_2 != blank %}
+            <span class="wfa-newsletter-landing__chip">{{ section.settings.chip_2 }}</span>
+          {% endif %}
+          {% if section.settings.chip_3 != blank %}
+            <span class="wfa-newsletter-landing__chip">{{ section.settings.chip_3 }}</span>
+          {% endif %}
+        </div>
+
+        <div class="wfa-newsletter-landing__benefits">
+          {% if section.settings.benefit_title != blank %}
+            <h3 class="wfa-newsletter-landing__benefit-title">{{ section.settings.benefit_title }}</h3>
+          {% endif %}
+
+          <ul class="wfa-newsletter-landing__benefit-list" role="list">
+            {% if section.settings.benefit_1 != blank %}
+              <li>{{ section.settings.benefit_1 }}</li>
+            {% endif %}
+            {% if section.settings.benefit_2 != blank %}
+              <li>{{ section.settings.benefit_2 }}</li>
+            {% endif %}
+            {% if section.settings.benefit_3 != blank %}
+              <li>{{ section.settings.benefit_3 }}</li>
+            {% endif %}
+            {% if section.settings.benefit_4 != blank %}
+              <li>{{ section.settings.benefit_4 }}</li>
+            {% endif %}
+          </ul>
+        </div>
+
+        {% if section.settings.supporting_text != blank %}
+          <p class="wfa-newsletter-landing__supporting-text">{{ section.settings.supporting_text }}</p>
+        {% endif %}
+      </div>
+
+      <div class="wfa-newsletter-landing__preview-wrap">
+        <div class="wfa-newsletter-landing__preview-card">
+          <div class="wfa-newsletter-landing__preview-header">
+            {% if section.settings.preview_date != blank %}
+              <p class="wfa-newsletter-landing__preview-date">{{ section.settings.preview_date }}</p>
+            {% endif %}
+
+            {% if section.settings.preview_title != blank %}
+              <h3 class="wfa-newsletter-landing__preview-title">{{ section.settings.preview_title }}</h3>
+            {% endif %}
+
+            {% if section.settings.preview_summary != blank %}
+              <p class="wfa-newsletter-landing__preview-summary">{{ section.settings.preview_summary }}</p>
+            {% endif %}
+          </div>
+
+          {% if story_count > 0 %}
+            <div class="wfa-newsletter-landing__stories">
+              {% for block in section.blocks %}
+                <article class="wfa-newsletter-landing__story" {{ block.shopify_attributes }}>
+                  {% if block.settings.story_headline != blank %}
+                    <h4 class="wfa-newsletter-landing__story-headline">{{ block.settings.story_headline }}</h4>
+                  {% endif %}
+
+                  {% if block.settings.story_summary != blank %}
+                    <p class="wfa-newsletter-landing__story-summary">{{ block.settings.story_summary }}</p>
+                  {% endif %}
+
+                  {% if block.settings.story_takeaway != blank %}
+                    <p class="wfa-newsletter-landing__story-takeaway">
+                      <strong>Why it matters:</strong> {{ block.settings.story_takeaway }}
+                    </p>
+                  {% endif %}
+                </article>
+              {% endfor %}
+            </div>
+          {% endif %}
+
+          <div class="wfa-newsletter-landing__preview-footer">
+            {% if section.settings.practical_move_heading != blank %}
+              <p class="wfa-newsletter-landing__practical-label">{{ section.settings.practical_move_heading }}</p>
+            {% endif %}
+
+            {% if section.settings.practical_move_text != blank %}
+              <p class="wfa-newsletter-landing__practical-text">{{ section.settings.practical_move_text }}</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  #wfa-newsletter-landing-{{ section.id }} {
+    --wfa-dark: #0F0036;
+    --wfa-light: #F1EFE7;
+    --wfa-cream: #F7F3EC;
+    --wfa-border: rgba(15, 0, 54, 0.12);
+    --wfa-text-soft: rgba(15, 0, 54, 0.72);
+    --wfa-radius: 24px;
+    background: linear-gradient(180deg, #fbfaf7 0%, #f1efe7 100%);
+    padding: 56px 0;
+  }
+
+  #wfa-newsletter-landing-{{ section.id }} .page-width {
+    max-width: 1240px;
+  }
+
+  #wfa-newsletter-landing-{{ section.id }} * {
+    box-sizing: border-box;
+  }
+
+  #wfa-newsletter-landing-{{ section.id }} .wfa-newsletter-landing__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+    gap: 32px;
+    align-items: start;
+  }
+
+  #wfa-newsletter-landing-{{ section.id }} .wfa-newsletter-landing__content,
+  #wfa-newsletter-landing-{{ section.id }} .wfa-newsletter-landing__preview-card {
+    font-family: "Avenir Next", Avenir, Montserrat, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  #wfa-newsletter-landing-{{ section.id }} .wfa-newsletter-landing__content {
+    background: rgba(255, 255, 255, 0.62);
+    border: 1px solid var(--wfa-border);
+    border-radius: var(--wfa-radius);
+    padding: 36px;
+    backdrop-filter: blur(8px);
+  }
+
+  #wfa-newsletter-landing-{{ section.id }} .wfa-newsletter-landing__eyebrow {
+    margin: 0 0 12px;
+    color: var(--wfa-dark);
+    font-size: 12px;
+    line-height: 1.2;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 700;
+    opacity: 0.7;
+  }
+
+  #wfa-newsletter-landing-{{ section.id }} .wfa-newsletter-landing__heading {
+    margin: 0 0 14px;
+    color: var(--wfa-dark);
+    font-size: clamp(34px, 4.2vw, 58px);
+    line-height: 0.98;
+    letter-spacing: -0.04em;
+    font-weight: 700;
+    max-width: 11ch;
+  }
+
+  #wfa-newsletter-landing-{{ section.id }} .wfa-newsletter-landing__subheading {
+    color: var(--wfa-text-soft);
+    font-size: 18px;
+    line-height: 1.65;
+    max-width: 58ch;
+  }
+
+  #wfa-newsletter-landing-{{ section.id }} .wfa-newsletter-landing__subheading p {
+    margin: 0 0 14px;
+  }
+
+  #wfa-newsletter-landing-{{ section.id }} .wfa-newsletter-landing__subheading p:last-child {
+    margin-bottom: 0;
+  }
+
+  #wfa-newsletter-landing-{{ section.id }} .wfa-newsletter-landing__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 22px 0 26px;
+  }
+
+  #wfa-newsletter-landing-{{ section.id }} .wfa-newsletter-landing__chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 14px;
+    border-radius: 999px;
+    background: var(--wfa-dark);
+    color: var(--wfa-light);
+    font-size: 13px;
+    line-height: 1;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  #wfa-newsletter-landing-{{ section.id }} .wfa-newsletter-landing__benefits {
+    padding: 24px;
+    border-radius: 20px;
+    background: #fff;
+    border: 1px solid var(--wfa-border);
+  }
+
+  #wfa-newsletter-landing-{{ section.id }} .wfa-newsletter-landing__benefit-title {
+    margin: 0 0 14px;
+    color: var(--wfa-dark);
+    font-size: 18px;
+    line-height: 1.2;
+    font-weight: 700;
+  }
+
+  #wfa-newsletter-landing-{{ section.id }} .wfa-newsletter-landing__benefit-list {
+    margin: 0;
+    padding-left: 18px;
+    color: var(--wfa-dark);
+  }
+
+  #wfa-newsletter-landing-{{ section.id }} .wfa-newsletter-landing__benefit-list li {
+    margin: 0 0 10px;
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--wfa-text-soft);
+  }
+
+  #wfa-newsletter-landing-{{ section.id }} .wfa-newsletter-landing__benefit-list li:last-child {
+    margin-bottom: 0;
+  }
+
+  #wfa-newsletter-landing-{{ section.id }} .wfa-newsletter-landing__supporting-text {
+    margin: 18px 0 0;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--wfa-text-soft);
+  }
+
+  #wfa-newsletter-landing-{{ section.id }} .wfa-newsletter-landing__preview-wrap {
+    position: relative;
+  }
+
+  #wfa-newsletter-landing-{{ section.id }} .wfa-newsletter-landing__preview-card {
+    overflow: hidden;
+    border-radius: 28px;
+    background: #fff;
+    border: 1px solid rgba(15, 0, 54, 0.08);
+    box-shadow: 0 20px 60px rgba(15, 0, 54, 0.08);
+  }
+
+  #wfa-newsletter-landing-{{ section.id }} .wfa-newsletter-landing__preview-header {
+    background: var(--wfa-dark);
+    color: var(--wfa-light);
+    padding: 28px 28px 24px;
+  }
+
+  #wfa-newsletter-landing-{{ section.id }} .wfa-newsletter-landing__preview-date {
+    margin: 0 0 10px;
+    font-size: 11px;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-weight: 700;
+    opacity: 0.76;
+  }
+
+  #wfa-newsletter-landing-{{ section.id }} .wfa-newsletter-landing__preview-title {
+    margin: 0 0 10px;
+    font-size: 28px;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    font-weight: 700;
+    color: var(--wfa-light);
+  }
+
+  #wfa-newsletter-landing-{{ section.id }} .wfa-newsletter-landing__preview-summary {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.65;
+    color: rgba(241, 239, 231, 0.88);
+  }
+
+  #wfa-newsletter-landing-{{ section.id }} .wfa-newsletter-landing__stories {
+    padding: 12px 28px 8px;
+  }
+
+  #wfa-newsletter-landing-{{ section.id }} .wfa-newsletter-landing__story {
+    padding: 22px 0;
+    border-bottom: 1px solid rgba(15, 0, 54, 0.09);
+  }
+
+  #wfa-newsletter-landing-{{ section.id }} .wfa-newsletter-landing__story:last-child {
+    border-bottom: 0;
+    padding-bottom: 8px;
+  }
+
+  #wfa-newsletter-landing-{{ section.id }} .wfa-newsletter-landing__story-headline {
+    margin: 0 0 10px;
+    color: var(--wfa-dark);
+    font-size: 22px;
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+    font-weight: 700;
+  }
+
+  #wfa-newsletter-landing-{{ section.id }} .wfa-newsletter-landing__story-summary,
+  #wfa-newsletter-landing-{{ section.id }} .wfa-newsletter-landing__story-takeaway {
+    margin: 0 0 10px;
+    color: var(--wfa-text-soft);
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  #wfa-newsletter-landing-{{ section.id }} .wfa-newsletter-landing__story-takeaway {
+    margin-bottom: 0;
+  }
+
+  #wfa-newsletter-landing-{{ section.id }} .wfa-newsletter-landing__preview-footer {
+    margin: 0 20px 20px;
+    padding: 22px;
+    border-radius: 20px;
+    background: var(--wfa-dark);
+  }
+
+  #wfa-newsletter-landing-{{ section.id }} .wfa-newsletter-landing__practical-label {
+    margin: 0 0 8px;
+    color: rgba(241, 239, 231, 0.72);
+    font-size: 12px;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-weight: 700;
+  }
+
+  #wfa-newsletter-landing-{{ section.id }} .wfa-newsletter-landing__practical-text {
+    margin: 0;
+    color: var(--wfa-light);
+    font-size: 18px;
+    line-height: 1.45;
+    letter-spacing: -0.02em;
+  }
+
+  @media screen and (max-width: 989px) {
+    #wfa-newsletter-landing-{{ section.id }} {
+      padding: 42px 0;
+    }
+
+    #wfa-newsletter-landing-{{ section.id }} .wfa-newsletter-landing__grid {
+      grid-template-columns: 1fr;
+    }
+
+    #wfa-newsletter-landing-{{ section.id }} .wfa-newsletter-landing__heading {
+      max-width: none;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    #wfa-newsletter-landing-{{ section.id }} .wfa-newsletter-landing__content,
+    #wfa-newsletter-landing-{{ section.id }} .wfa-newsletter-landing__preview-header,
+    #wfa-newsletter-landing-{{ section.id }} .wfa-newsletter-landing__stories {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    #wfa-newsletter-landing-{{ section.id }} .wfa-newsletter-landing__content {
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+
+    #wfa-newsletter-landing-{{ section.id }} .wfa-newsletter-landing__benefits,
+    #wfa-newsletter-landing-{{ section.id }} .wfa-newsletter-landing__preview-footer {
+      padding: 18px;
+    }
+
+    #wfa-newsletter-landing-{{ section.id }} .wfa-newsletter-landing__preview-footer {
+      margin: 0 16px 16px;
+    }
+
+    #wfa-newsletter-landing-{{ section.id }} .wfa-newsletter-landing__story-headline {
+      font-size: 19px;
+    }
+
+    #wfa-newsletter-landing-{{ section.id }} .wfa-newsletter-landing__practical-text {
+      font-size: 16px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "WFA Newsletter landing",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "DAILY AI NEWSLETTER"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Workflow Wire, daily AI news for Australian small business."
+    },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "<p>A short, practical daily read covering the AI and automation updates that actually matter to small business owners in Australia.</p><p>No hype. No deep model rabbit holes. Just the stories, shifts and tools worth paying attention to.</p>"
+    },
+    {
+      "type": "text",
+      "id": "chip_1",
+      "label": "Chip 1",
+      "default": "5 stories in 3 minutes"
+    },
+    {
+      "type": "text",
+      "id": "chip_2",
+      "label": "Chip 2",
+      "default": "Built for Australian SMBs"
+    },
+    {
+      "type": "text",
+      "id": "chip_3",
+      "label": "Chip 3",
+      "default": "Practical, not technical"
+    },
+    {
+      "type": "text",
+      "id": "benefit_title",
+      "label": "Benefits title",
+      "default": "What you get"
+    },
+    {
+      "type": "text",
+      "id": "benefit_1",
+      "label": "Benefit 1",
+      "default": "A curated daily breakdown of AI and automation news relevant to small business owners."
+    },
+    {
+      "type": "text",
+      "id": "benefit_2",
+      "label": "Benefit 2",
+      "default": "Plain-English summaries with a clear 'why it matters' angle."
+    },
+    {
+      "type": "text",
+      "id": "benefit_3",
+      "label": "Benefit 3",
+      "default": "A practical next step you can actually take in your business today."
+    },
+    {
+      "type": "text",
+      "id": "benefit_4",
+      "label": "Benefit 4",
+      "default": "A smarter way to stay ahead without doomscrolling LinkedIn, X or tech blogs."
+    },
+    {
+      "type": "text",
+      "id": "supporting_text",
+      "label": "Supporting text",
+      "default": "Drop your Shopify email signup section directly above or below this block to turn Instagram traffic into subscribers."
+    },
+    {
+      "type": "text",
+      "id": "preview_date",
+      "label": "Preview date",
+      "default": "MONDAY 09 MARCH 2026"
+    },
+    {
+      "type": "text",
+      "id": "preview_title",
+      "label": "Preview title",
+      "default": "Workflow Wire"
+    },
+    {
+      "type": "textarea",
+      "id": "preview_summary",
+      "label": "Preview summary",
+      "default": "AI-powered workflows are quietly being stitched into everyday small-business operations across Australia, and the winners will be the owners who start small and move early."
+    },
+    {
+      "type": "text",
+      "id": "practical_move_heading",
+      "label": "Practical move heading",
+      "default": "One practical move for today"
+    },
+    {
+      "type": "textarea",
+      "id": "practical_move_text",
+      "label": "Practical move text",
+      "default": "Pick one repetitive admin task in your business and map how an AI assistant or automation could save 30 minutes a day."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "story",
+      "name": "Story preview",
+      "settings": [
+        {
+          "type": "text",
+          "id": "story_headline",
+          "label": "Headline",
+          "default": "Federal automation grants unlock new copilots for services firms"
+        },
+        {
+          "type": "textarea",
+          "id": "story_summary",
+          "label": "Summary",
+          "default": "Canberra is accelerating support for small firms adopting automation, with co-funded help aimed at reducing admin-heavy work across compliance, invoicing and operations."
+        },
+        {
+          "type": "textarea",
+          "id": "story_takeaway",
+          "label": "Why it matters",
+          "default": "If your business still handles repetitive admin manually, this kind of funding could lower the cost of getting started."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 5,
+  "presets": [
+    {
+      "name": "WFA Newsletter landing",
+      "blocks": [
+        {
+          "type": "story"
+        },
+        {
+          "type": "story"
+        },
+        {
+          "type": "story"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

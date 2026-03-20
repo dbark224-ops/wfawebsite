@@ -1,0 +1,301 @@
+{% schema %}
+{
+  "name": "AI Why Us Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "We translate cutting-edge AI into everyday business value."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Large corporations like Expedia and RealEstate.com.au are already leveraging AI to dominate their markets. We believe Australian small businesses deserve the same competitive edge, without the enterprise price tag."
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link Text",
+      "default": "Learn more about our mission"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Benefit Text",
+          "default": "100% Australian owned and operated."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "AI Why Us Section",
+      "blocks": [
+        { "type": "benefit", "settings": { "text": "100% Australian owned and operated." } },
+        { "type": "benefit", "settings": { "text": "Solutions tailored specifically for your unique workflows." } },
+        { "type": "benefit", "settings": { "text": "Zero jargon. We speak your language." } }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<section class="waa-why-us">
+  <div class="waa-why-us-container">
+    
+    <!-- Content Side -->
+    <div class="waa-why-us-content">
+      <h2 class="waa-why-us-heading">
+        {{ section.settings.heading | replace: 'everyday business value.', '<span class="text-accent">everyday business value.</span>' }}
+      </h2>
+      <p class="waa-why-us-desc">
+        {{ section.settings.description | escape }}
+      </p>
+      
+      <ul class="waa-benefit-list">
+        {% for block in section.blocks %}
+          <li class="waa-benefit-item" {{ block.shopify_attributes }}>
+            <svg class="waa-check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            <span>{{ block.settings.text | escape }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+
+      {% if section.settings.link_text != blank %}
+        <a href="{{ section.settings.link_url | default: '#' }}" class="waa-mission-link">
+          {{ section.settings.link_text | escape }}
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
+        </a>
+      {% endif %}
+    </div>
+
+    <!-- Visual Side (Abstract AI Graphic) -->
+    <div class="waa-why-us-visual">
+      <div class="waa-visual-box">
+        <div class="waa-grid-pattern"></div>
+        
+        <div class="waa-status-cards">
+          <!-- Card 1 -->
+          <div class="waa-status-card waa-pulse">
+            <div class="waa-status-icon icon-teal">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
+            </div>
+            <div class="waa-status-lines">
+              <div class="line-half"></div>
+              <div class="line-full"></div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="waa-status-card card-offset">
+            <div class="waa-status-icon icon-blue">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M10 8h.01"/><path d="M14 8h.01"/><path d="M18 8h.01"/></svg>
+            </div>
+            <div class="waa-status-lines">
+              <div class="line-2-3"></div>
+              <div class="line-half"></div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="waa-status-card waa-border-teal">
+            <div class="waa-status-icon icon-green">
+               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            </div>
+            <div class="waa-status-text">
+              <div class="waa-mono-label">Task automated successfully</div>
+              <div class="line-full"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .waa-why-us {
+    padding: 100px 24px;
+    background-color: #0f0326;
+    overflow: hidden;
+  }
+
+  .waa-why-us-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  @media (min-width: 992px) {
+    .waa-why-us-container {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .waa-why-us-heading {
+    color: #ffffff;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 32px;
+  }
+
+  .text-accent {
+    color: #2dd4bf;
+  }
+
+  .waa-why-us-desc {
+    color: #94a3b8;
+    font-size: 1.125rem;
+    line-height: 1.7;
+    margin-bottom: 32px;
+  }
+
+  .waa-benefit-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 32px 0;
+  }
+
+  .waa-benefit-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    color: #cbd5e1;
+    margin-bottom: 16px;
+    font-size: 1.05rem;
+  }
+
+  .waa-check-icon {
+    color: #14b8a6;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .waa-mission-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid #14b8a6;
+    padding-bottom: 4px;
+    transition: color 0.3s ease;
+  }
+
+  .waa-mission-link:hover {
+    color: #2dd4bf;
+  }
+
+  /* Visual Side Styles */
+  .waa-visual-box {
+    position: relative;
+    background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 24px;
+    padding: 40px;
+    height: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+  }
+
+  .waa-grid-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
+    opacity: 0.05;
+    pointer-events: none;
+  }
+
+  .waa-status-cards {
+    width: 100%;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .waa-status-card {
+    background: #0f0326;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  }
+
+  .waa-pulse {
+    animation: waa-pulse-anim 2s infinite ease-in-out;
+  }
+
+  @keyframes waa-pulse-anim {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(0.98); }
+  }
+
+  .card-offset {
+    margin-left: 32px;
+  }
+
+  .waa-border-teal {
+    border-color: rgba(20, 184, 166, 0.4);
+    box-shadow: 0 0 20px rgba(20, 184, 166, 0.1);
+  }
+
+  .waa-status-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .icon-teal { background: rgba(45, 212, 191, 0.15); color: #2dd4bf; }
+  .icon-blue { background: rgba(96, 165, 250, 0.15); color: #60a5fa; }
+  .icon-green { background: rgba(34, 197, 94, 0.15); color: #22c55e; }
+
+  .waa-status-lines, .waa-status-text {
+    flex-grow: 1;
+  }
+
+  .line-half, .line-full, .line-2-3 {
+    height: 8px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
+  .line-half { width: 50%; }
+  .line-full { width: 100%; margin-bottom: 0; }
+  .line-2-3 { width: 66%; }
+
+  .waa-mono-label {
+    font-family: monospace;
+    font-size: 11px;
+    color: #2dd4bf;
+    margin-bottom: 4px;
+  }
+</style>

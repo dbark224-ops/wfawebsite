@@ -1,0 +1,547 @@
+{% doc %}
+  @prompt
+    A page where customers can schedule/book a discovery call
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-discovery-call-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 40px;
+    background-color: {{ block.settings.background_color }};
+    border-radius: {{ block.settings.border_radius }}px;
+  }
+
+  .ai-discovery-call-container-{{ ai_gen_id }} {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .ai-discovery-call-header-{{ ai_gen_id }} {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .ai-discovery-call-title-{{ ai_gen_id }} {
+    color: {{ block.settings.text_color }};
+    margin: 0 0 12px;
+    font-size: {{ block.settings.title_size }}px;
+  }
+
+  .ai-discovery-call-description-{{ ai_gen_id }} {
+    color: {{ block.settings.text_color }};
+    opacity: 0.8;
+    margin: 0;
+    font-size: {{ block.settings.description_size }}px;
+    line-height: 1.5;
+  }
+
+  .ai-discovery-call-form-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .ai-discovery-call-field-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .ai-discovery-call-label-{{ ai_gen_id }} {
+    color: {{ block.settings.text_color }};
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .ai-discovery-call-input-{{ ai_gen_id }},
+  .ai-discovery-call-textarea-{{ ai_gen_id }},
+  .ai-discovery-call-select-{{ ai_gen_id }} {
+    padding: 12px 16px;
+    border: 1px solid {{ block.settings.input_border_color }};
+    border-radius: {{ block.settings.input_border_radius }}px;
+    background-color: {{ block.settings.input_background_color }};
+    color: {{ block.settings.text_color }};
+    font-size: 14px;
+    font-family: inherit;
+    width: 100%;
+  }
+
+  .ai-discovery-call-input-{{ ai_gen_id }}:focus,
+  .ai-discovery-call-textarea-{{ ai_gen_id }}:focus,
+  .ai-discovery-call-select-{{ ai_gen_id }}:focus {
+    outline: 2px solid {{ block.settings.button_color }};
+    outline-offset: 2px;
+  }
+
+  .ai-discovery-call-textarea-{{ ai_gen_id }} {
+    min-height: 100px;
+    resize: vertical;
+  }
+
+  .ai-discovery-call-row-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .ai-discovery-call-button-{{ ai_gen_id }} {
+    padding: 14px 32px;
+    background-color: {{ block.settings.button_color }};
+    color: {{ block.settings.button_text_color }};
+    border: none;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-top: 8px;
+  }
+
+  .ai-discovery-call-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_color }};
+  }
+
+  .ai-discovery-call-success-{{ ai_gen_id }} {
+    padding: 16px;
+    background-color: {{ block.settings.success_bg_color }};
+    color: {{ block.settings.success_text_color }};
+    border-radius: {{ block.settings.input_border_radius }}px;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 8px;
+  }
+
+  .ai-discovery-call-error-{{ ai_gen_id }} {
+    padding: 16px;
+    background-color: {{ block.settings.error_bg_color }};
+    color: {{ block.settings.error_text_color }};
+    border-radius: {{ block.settings.input_border_radius }}px;
+    font-size: 14px;
+    margin-top: 8px;
+  }
+
+  .ai-discovery-call-required-{{ ai_gen_id }} {
+    color: {{ block.settings.button_color }};
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-discovery-call-{{ ai_gen_id }} {
+      padding: 24px;
+      width: 100%;
+    }
+
+    .ai-discovery-call-row-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+    }
+
+    .ai-discovery-call-title-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.title_size }}px * 0.8);
+    }
+
+    .ai-discovery-call-description-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.description_size }}px * 0.9);
+    }
+  }
+{% endstyle %}
+
+<discovery-call-booking-{{ ai_gen_id }}
+  class="ai-discovery-call-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-discovery-call-container-{{ ai_gen_id }}">
+    <div class="ai-discovery-call-header-{{ ai_gen_id }}">
+      {% if block.settings.title != blank %}
+        <h2 class="ai-discovery-call-title-{{ ai_gen_id }}">{{ block.settings.title }}</h2>
+      {% endif %}
+      {% if block.settings.description != blank %}
+        <div class="ai-discovery-call-description-{{ ai_gen_id }}">{{ block.settings.description }}</div>
+      {% endif %}
+    </div>
+
+    {%- form 'contact' -%}
+      <input type="hidden" name="contact[subject]" value="Discovery Call Request">
+      
+      <div class="ai-discovery-call-form-{{ ai_gen_id }}">
+        <div class="ai-discovery-call-row-{{ ai_gen_id }}">
+          <div class="ai-discovery-call-field-{{ ai_gen_id }}">
+            <label for="ai-discovery-name-{{ ai_gen_id }}" class="ai-discovery-call-label-{{ ai_gen_id }}">
+              Name <span class="ai-discovery-call-required-{{ ai_gen_id }}">*</span>
+            </label>
+            <input
+              type="text"
+              id="ai-discovery-name-{{ ai_gen_id }}"
+              name="contact[name]"
+              class="ai-discovery-call-input-{{ ai_gen_id }}"
+              required
+              autocomplete="name"
+              {% if form.errors %}
+                aria-invalid="true"
+              {% endif %}
+            >
+          </div>
+
+          <div class="ai-discovery-call-field-{{ ai_gen_id }}">
+            <label for="ai-discovery-email-{{ ai_gen_id }}" class="ai-discovery-call-label-{{ ai_gen_id }}">
+              Email <span class="ai-discovery-call-required-{{ ai_gen_id }}">*</span>
+            </label>
+            <input
+              type="email"
+              id="ai-discovery-email-{{ ai_gen_id }}"
+              name="contact[email]"
+              class="ai-discovery-call-input-{{ ai_gen_id }}"
+              required
+              autocomplete="email"
+              {% if form.errors %}
+                aria-invalid="true"
+                aria-describedby="ai-discovery-error-{{ ai_gen_id }}"
+              {% endif %}
+              {% if form.posted_successfully? %}
+                aria-describedby="ai-discovery-success-{{ ai_gen_id }}"
+              {% endif %}
+            >
+          </div>
+        </div>
+
+        <div class="ai-discovery-call-row-{{ ai_gen_id }}">
+          <div class="ai-discovery-call-field-{{ ai_gen_id }}">
+            <label for="ai-discovery-phone-{{ ai_gen_id }}" class="ai-discovery-call-label-{{ ai_gen_id }}">
+              Phone
+            </label>
+            <input
+              type="tel"
+              id="ai-discovery-phone-{{ ai_gen_id }}"
+              name="contact[phone]"
+              class="ai-discovery-call-input-{{ ai_gen_id }}"
+              autocomplete="tel"
+            >
+          </div>
+
+          <div class="ai-discovery-call-field-{{ ai_gen_id }}">
+            <label for="ai-discovery-company-{{ ai_gen_id }}" class="ai-discovery-call-label-{{ ai_gen_id }}">
+              Company
+            </label>
+            <input
+              type="text"
+              id="ai-discovery-company-{{ ai_gen_id }}"
+              name="contact[company]"
+              class="ai-discovery-call-input-{{ ai_gen_id }}"
+              autocomplete="organization"
+            >
+          </div>
+        </div>
+
+        <div class="ai-discovery-call-row-{{ ai_gen_id }}">
+          <div class="ai-discovery-call-field-{{ ai_gen_id }}">
+            <label for="ai-discovery-date-{{ ai_gen_id }}" class="ai-discovery-call-label-{{ ai_gen_id }}">
+              Preferred date <span class="ai-discovery-call-required-{{ ai_gen_id }}">*</span>
+            </label>
+            <input
+              type="text"
+              id="ai-discovery-date-{{ ai_gen_id }}"
+              name="contact[preferred_date]"
+              class="ai-discovery-call-input-{{ ai_gen_id }}"
+              placeholder="MM/DD/YYYY"
+              required
+            >
+          </div>
+
+          <div class="ai-discovery-call-field-{{ ai_gen_id }}">
+            <label for="ai-discovery-time-{{ ai_gen_id }}" class="ai-discovery-call-label-{{ ai_gen_id }}">
+              Preferred time <span class="ai-discovery-call-required-{{ ai_gen_id }}">*</span>
+            </label>
+            <select
+              id="ai-discovery-time-{{ ai_gen_id }}"
+              name="contact[preferred_time]"
+              class="ai-discovery-call-select-{{ ai_gen_id }}"
+              required
+            >
+              <option value="">Select a time</option>
+              <option value="9:00 AM - 10:00 AM">9:00 AM - 10:00 AM</option>
+              <option value="10:00 AM - 11:00 AM">10:00 AM - 11:00 AM</option>
+              <option value="11:00 AM - 12:00 PM">11:00 AM - 12:00 PM</option>
+              <option value="12:00 PM - 1:00 PM">12:00 PM - 1:00 PM</option>
+              <option value="1:00 PM - 2:00 PM">1:00 PM - 2:00 PM</option>
+              <option value="2:00 PM - 3:00 PM">2:00 PM - 3:00 PM</option>
+              <option value="3:00 PM - 4:00 PM">3:00 PM - 4:00 PM</option>
+              <option value="4:00 PM - 5:00 PM">4:00 PM - 5:00 PM</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="ai-discovery-call-field-{{ ai_gen_id }}">
+          <label for="ai-discovery-message-{{ ai_gen_id }}" class="ai-discovery-call-label-{{ ai_gen_id }}">
+            Message
+          </label>
+          <textarea
+            id="ai-discovery-message-{{ ai_gen_id }}"
+            name="contact[body]"
+            class="ai-discovery-call-textarea-{{ ai_gen_id }}"
+            placeholder="Tell us about your needs..."
+          ></textarea>
+        </div>
+
+        <button type="submit" class="ai-discovery-call-button-{{ ai_gen_id }}">
+          {{ block.settings.button_text }}
+        </button>
+
+        {%- if form.posted_successfully? -%}
+          <div
+            id="ai-discovery-success-{{ ai_gen_id }}"
+            class="ai-discovery-call-success-{{ ai_gen_id }}"
+          >
+            {{ block.settings.success_message }}
+          </div>
+        {%- endif -%}
+
+        {%- if form.errors -%}
+          <div
+            id="ai-discovery-error-{{ ai_gen_id }}"
+            class="ai-discovery-call-error-{{ ai_gen_id }}"
+          >
+            {% if form.errors.messages.email %}
+              {{ form.errors.messages.email }}
+            {% else %}
+              Please fill in all required fields correctly.
+            {% endif %}
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endform -%}
+  </div>
+</discovery-call-booking-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class DiscoveryCallBooking{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.dateInput = this.querySelector('#ai-discovery-date-{{ ai_gen_id }}');
+        if (this.dateInput) {
+          this.setupDateValidation();
+        }
+      }
+
+      setupDateValidation() {
+        this.dateInput.addEventListener('blur', () => {
+          const value = this.dateInput.value;
+          if (value && !this.isValidDate(value)) {
+            this.dateInput.setCustomValidity('Please enter a valid date in MM/DD/YYYY format');
+          } else {
+            this.dateInput.setCustomValidity('');
+          }
+        });
+
+        this.dateInput.addEventListener('input', () => {
+          this.dateInput.setCustomValidity('');
+        });
+      }
+
+      isValidDate(dateString) {
+        const regex = /^(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/\d{4}$/;
+        if (!regex.test(dateString)) {
+          return false;
+        }
+
+        const parts = dateString.split('/');
+        const month = parseInt(parts[0], 10);
+        const day = parseInt(parts[1], 10);
+        const year = parseInt(parts[2], 10);
+
+        const date = new Date(year, month - 1, day);
+        return date.getFullYear() === year && 
+               date.getMonth() === month - 1 && 
+               date.getDate() === day;
+      }
+    }
+
+    customElements.define('discovery-call-booking-{{ ai_gen_id }}', DiscoveryCallBooking{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Discovery call booking",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "Schedule a Discovery Call"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "Let's discuss how we can help you achieve your goals. Fill out the form below to book your free consultation."
+    },
+    {
+      "type": "inline_richtext",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Book my call"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "success_message",
+      "label": "Success message",
+      "default": "Thank you! We'll be in touch soon to confirm your discovery call."
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "input_background_color",
+      "label": "Input background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "input_border_color",
+      "label": "Input border",
+      "default": "#dfdfdf"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_color",
+      "label": "Button hover",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "success_bg_color",
+      "label": "Success background",
+      "default": "#e1f5e1"
+    },
+    {
+      "type": "color",
+      "id": "success_text_color",
+      "label": "Success text",
+      "default": "#006400"
+    },
+    {
+      "type": "color",
+      "id": "error_bg_color",
+      "label": "Error background",
+      "default": "#ffe6e6"
+    },
+    {
+      "type": "color",
+      "id": "error_text_color",
+      "label": "Error text",
+      "default": "#d82c0d"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Title size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "label": "Description size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "input_border_radius",
+      "label": "Input border radius",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Button border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 14
+    }
+  ],
+  "presets": [
+    {
+      "name": "Discovery call booking"
+    }
+  ]
+}
+{% endschema %}
