@@ -30,6 +30,32 @@
       "type": "url",
       "id": "cta_link",
       "label": "CTA link"
+    },
+    {
+      "type": "header",
+      "content": "UI screenshots"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_screenshot",
+      "label": "Desktop screenshot"
+    },
+    {
+      "type": "text",
+      "id": "desktop_caption",
+      "label": "Desktop caption",
+      "default": "Desktop view"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_screenshot",
+      "label": "Mobile screenshot"
+    },
+    {
+      "type": "text",
+      "id": "mobile_caption",
+      "label": "Mobile caption",
+      "default": "Mobile view"
     }
   ],
   "blocks": [
@@ -105,7 +131,7 @@
 }
 {% endschema %}
 
-<section class="waa-agent-showcase">
+<section class="waa-agent-showcase waa-agent-showcase--{{ section.id }}">
   <div class="waa-agent-container">
     <div class="waa-agent-header">
       {% if section.settings.eyebrow != blank %}
@@ -122,6 +148,38 @@
       {% endif %}
     </div>
 
+    <div class="waa-agent-ui-strip">
+      <figure class="waa-agent-shot waa-agent-shot--desktop">
+        <div class="waa-agent-device-shell">
+          {% if section.settings.desktop_screenshot != blank %}
+            {{ section.settings.desktop_screenshot | image_url: width: 1800 | image_tag: class: 'waa-agent-shot-image', loading: 'lazy', alt: section.settings.desktop_caption }}
+          {% else %}
+            <div class="waa-agent-placeholder">
+              <span>Desktop screenshot placeholder</span>
+            </div>
+          {% endif %}
+        </div>
+        {% if section.settings.desktop_caption != blank %}
+          <figcaption>{{ section.settings.desktop_caption | escape }}</figcaption>
+        {% endif %}
+      </figure>
+
+      <figure class="waa-agent-shot waa-agent-shot--mobile">
+        <div class="waa-agent-device-shell waa-agent-device-shell--mobile">
+          {% if section.settings.mobile_screenshot != blank %}
+            {{ section.settings.mobile_screenshot | image_url: width: 900 | image_tag: class: 'waa-agent-shot-image', loading: 'lazy', alt: section.settings.mobile_caption }}
+          {% else %}
+            <div class="waa-agent-placeholder">
+              <span>Mobile screenshot placeholder</span>
+            </div>
+          {% endif %}
+        </div>
+        {% if section.settings.mobile_caption != blank %}
+          <figcaption>{{ section.settings.mobile_caption | escape }}</figcaption>
+        {% endif %}
+      </figure>
+    </div>
+
     <div class="waa-agent-grid">
       {% for block in section.blocks %}
         <article class="waa-agent-card" {{ block.shopify_attributes }}>
@@ -134,91 +192,169 @@
 </section>
 
 <style>
-  .waa-agent-showcase {
-    background: #0f0326;
-    padding: 88px 24px;
-    border-top: 1px solid rgba(255,255,255,0.05);
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+  .waa-agent-showcase--{{ section.id }} {
+    background:
+      radial-gradient(circle at 12% 0%, rgba(45, 212, 191, 0.14), transparent 42%),
+      radial-gradient(circle at 88% 0%, rgba(96, 165, 250, 0.16), transparent 46%),
+      #0f0326;
+    padding: 100px 24px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
   }
 
-  .waa-agent-container {
+  .waa-agent-showcase--{{ section.id }} .waa-agent-container {
     max-width: 1200px;
     margin: 0 auto;
   }
 
-  .waa-agent-header {
-    max-width: 800px;
-    margin: 0 auto 48px;
+  .waa-agent-showcase--{{ section.id }} .waa-agent-header {
+    max-width: 860px;
+    margin: 0 auto 54px;
     text-align: center;
   }
 
-  .waa-agent-eyebrow {
+  .waa-agent-showcase--{{ section.id }} .waa-agent-eyebrow {
     color: #2dd4bf;
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     margin: 0 0 12px;
-    font-weight: 600;
+    font-weight: 700;
   }
 
-  .waa-agent-title {
+  .waa-agent-showcase--{{ section.id }} .waa-agent-title {
     color: #ffffff;
-    font-size: clamp(2rem, 5.2vw, 3rem);
-    line-height: 1.15;
-    margin: 0 0 14px;
+    font-size: clamp(2.1rem, 5.2vw, 3.2rem);
+    line-height: 1.08;
+    margin: 0 0 16px;
     letter-spacing: -0.02em;
   }
 
-  .waa-agent-intro {
+  .waa-agent-showcase--{{ section.id }} .waa-agent-intro {
     color: #94a3b8;
     margin: 0 auto;
-    line-height: 1.7;
-    font-size: 1.05rem;
+    line-height: 1.75;
+    font-size: 1.06rem;
   }
 
-  .waa-agent-cta {
+  .waa-agent-showcase--{{ section.id }} .waa-agent-cta {
     display: inline-block;
     margin-top: 24px;
-    padding: 12px 20px;
+    padding: 12px 22px;
     border-radius: 999px;
     background: linear-gradient(135deg, #2dd4bf, #60a5fa);
     color: #08101f;
     text-decoration: none;
     font-weight: 700;
+    box-shadow: 0 10px 28px rgba(23, 152, 173, 0.35);
   }
 
-  .waa-agent-grid {
+  .waa-agent-showcase--{{ section.id }} .waa-agent-ui-strip {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 22px;
+    margin-bottom: 34px;
+  }
+
+  @media (min-width: 900px) {
+    .waa-agent-showcase--{{ section.id }} .waa-agent-ui-strip {
+      grid-template-columns: 2fr 1fr;
+      align-items: start;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+  }
+
+  .waa-agent-showcase--{{ section.id }} .waa-agent-shot {
+    margin: 0;
+  }
+
+  .waa-agent-showcase--{{ section.id }} .waa-agent-device-shell {
+    background: rgba(7, 10, 18, 0.6);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    padding: 10px;
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.34);
+    overflow: hidden;
+  }
+
+  .waa-agent-showcase--{{ section.id }} .waa-agent-device-shell--mobile {
+    border-radius: 28px;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .waa-agent-showcase--{{ section.id }} .waa-agent-shot-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+  }
+
+  .waa-agent-showcase--{{ section.id }} .waa-agent-placeholder {
+    min-height: 240px;
+    border-radius: 12px;
+    border: 1px dashed rgba(148, 163, 184, 0.45);
+    background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 24px;
+    font-size: 0.95rem;
+  }
+
+  .waa-agent-showcase--{{ section.id }} .waa-agent-shot--mobile .waa-agent-placeholder {
+    min-height: 420px;
+  }
+
+  .waa-agent-showcase--{{ section.id }} .waa-agent-shot figcaption {
+    color: #7f91aa;
+    font-size: 0.85rem;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .waa-agent-showcase--{{ section.id }} .waa-agent-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 18px;
   }
 
-  @media (min-width: 800px) {
-    .waa-agent-grid {
+  @media (min-width: 860px) {
+    .waa-agent-showcase--{{ section.id }} .waa-agent-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 22px;
+      gap: 20px;
     }
   }
 
-  .waa-agent-card {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.08);
+  .waa-agent-showcase--{{ section.id }} .waa-agent-card {
+    background: rgba(255,255,255,0.035);
+    border: 1px solid rgba(255,255,255,0.1);
     border-radius: 18px;
     padding: 24px;
     backdrop-filter: blur(8px);
+    transition: transform 0.22s ease, border-color 0.22s ease, background-color 0.22s ease;
   }
 
-  .waa-agent-card-title {
+  .waa-agent-showcase--{{ section.id }} .waa-agent-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(96, 165, 250, 0.4);
+    background: rgba(255,255,255,0.06);
+  }
+
+  .waa-agent-showcase--{{ section.id }} .waa-agent-card-title {
     color: #ffffff;
-    font-size: 1.15rem;
+    font-size: 1.12rem;
     margin: 0 0 8px;
-    line-height: 1.4;
+    line-height: 1.45;
   }
 
-  .waa-agent-card-text {
-    color: #94a3b8;
+  .waa-agent-showcase--{{ section.id }} .waa-agent-card-text {
+    color: #9baec3;
     margin: 0;
-    line-height: 1.65;
+    line-height: 1.68;
     font-size: 0.97rem;
   }
 </style>
