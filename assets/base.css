@@ -4,7 +4,7 @@
 
 body {
   color: var(--color-foreground);
-  background: var(--color-background);
+  background: #0f0326;
   display: flex;
   flex-direction: column;
   margin: 0;
@@ -23,6 +23,10 @@ body {
   --surface-transition-timing: var(--ease-out-quad);
   --submenu-animation-speed: 360ms;
   --submenu-animation-easing: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --reveal-distance: 26px;
+  --reveal-duration: 0.8s;
+  --reveal-easing: cubic-bezier(0.22, 1, 0.36, 1);
+  --reveal-delay: 0ms;
 }
 
 html {
@@ -245,6 +249,41 @@ select {
   .header-drawer .resource-card:hover {
     transform: none;
     box-shadow: none;
+  }
+}
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(var(--reveal-distance));
+  transition:
+    opacity var(--reveal-duration) var(--reveal-easing) var(--reveal-delay),
+    transform var(--reveal-duration) var(--reveal-easing) var(--reveal-delay);
+  will-change: opacity, transform;
+}
+
+[data-reveal='left'] {
+  transform: translateX(calc(var(--reveal-distance) * -1));
+}
+
+[data-reveal='right'] {
+  transform: translateX(var(--reveal-distance));
+}
+
+[data-reveal='zoom'] {
+  transform: translateY(18px) scale(0.96);
+}
+
+[data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    will-change: auto;
   }
 }
 
