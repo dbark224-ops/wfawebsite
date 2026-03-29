@@ -131,9 +131,9 @@
 }
 {% endschema %}
 
-<section class="waa-agent-showcase waa-agent-showcase--{{ section.id }}">
+<section class="waa-agent-showcase waa-agent-showcase--{{ section.id }}" data-reveal>
   <div class="waa-agent-container">
-    <div class="waa-agent-header">
+    <div class="waa-agent-header" data-reveal data-reveal-delay="40">
       {% if section.settings.eyebrow != blank %}
         <p class="waa-agent-eyebrow">{{ section.settings.eyebrow | escape }}</p>
       {% endif %}
@@ -150,16 +150,16 @@
 
     <div class="waa-agent-main">
       <div class="waa-agent-top">
-        <div class="waa-agent-grid">
+        <div class="waa-agent-grid" data-reveal="left" data-reveal-delay="100">
           {% for block in section.blocks %}
-            <article class="waa-agent-card" {{ block.shopify_attributes }}>
+            <article class="waa-agent-card" data-reveal="zoom" data-reveal-delay="{{ forloop.index0 | times: 80 | plus: 140 }}" {{ block.shopify_attributes }}>
               <h3 class="waa-agent-card-title">{{ block.settings.title | escape }}</h3>
               <p class="waa-agent-card-text">{{ block.settings.description | escape }}</p>
             </article>
           {% endfor %}
         </div>
 
-        <figure class="waa-agent-shot waa-agent-shot--mobile">
+        <figure class="waa-agent-shot waa-agent-shot--mobile" data-reveal="right" data-reveal-delay="180">
           <div class="waa-agent-device-shell waa-agent-device-shell--mobile">
             {% if section.settings.mobile_screenshot != blank %}
               {{ section.settings.mobile_screenshot | image_url: width: 900 | image_tag: class: 'waa-agent-shot-image', loading: 'lazy', alt: section.settings.mobile_caption }}
@@ -175,7 +175,7 @@
         </figure>
       </div>
 
-      <figure class="waa-agent-shot waa-agent-shot--desktop waa-agent-shot--desktop-wide">
+      <figure class="waa-agent-shot waa-agent-shot--desktop waa-agent-shot--desktop-wide" data-reveal="zoom" data-reveal-delay="220">
         <div class="waa-agent-device-shell">
           {% if section.settings.desktop_screenshot != blank %}
             {{ section.settings.desktop_screenshot | image_url: width: 1800 | image_tag: class: 'waa-agent-shot-image', loading: 'lazy', alt: section.settings.desktop_caption }}

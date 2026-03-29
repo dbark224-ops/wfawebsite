@@ -53,11 +53,11 @@
 }
 {% endschema %}
 
-<section class="waa-why-us">
+<section class="waa-why-us" data-reveal>
   <div class="waa-why-us-container">
     
     <!-- Content Side -->
-    <div class="waa-why-us-content">
+    <div class="waa-why-us-content" data-reveal="left" data-reveal-delay="40">
       <h2 class="waa-why-us-heading">
         {{ section.settings.heading | replace: 'everyday business value.', '<span class="text-accent">everyday business value.</span>' }}
       </h2>
@@ -67,7 +67,7 @@
       
       <ul class="waa-benefit-list">
         {% for block in section.blocks %}
-          <li class="waa-benefit-item" {{ block.shopify_attributes }}>
+          <li class="waa-benefit-item" data-reveal="left" data-reveal-delay="{{ forloop.index0 | times: 70 | plus: 120 }}" {{ block.shopify_attributes }}>
             <svg class="waa-check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
             <span>{{ block.settings.text | escape }}</span>
           </li>
@@ -83,7 +83,7 @@
     </div>
 
     <!-- Visual Side (Abstract AI Graphic) -->
-    <div class="waa-why-us-visual">
+    <div class="waa-why-us-visual" data-reveal="right" data-reveal-delay="140">
       <div class="waa-visual-box">
         <div class="waa-grid-pattern"></div>
         
@@ -116,7 +116,7 @@
                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
             </div>
             <div class="waa-status-text">
-              <div class="waa-mono-label">Task automated successfully</div>
+              <div class="waa-mono-label">Workflow automated successfully</div>
               <div class="line-full"></div>
             </div>
           </div>

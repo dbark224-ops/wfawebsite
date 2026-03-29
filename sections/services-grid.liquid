@@ -81,16 +81,16 @@
 }
 {% endschema %}
 
-<section class="waa-services">
+<section class="waa-services" data-reveal>
   <div class="waa-services-container">
-    <div class="waa-services-header">
+    <div class="waa-services-header" data-reveal data-reveal-delay="60">
       <h2 class="waa-services-title">{{ section.settings.heading | escape }}</h2>
       <p class="waa-services-subheading">{{ section.settings.subheading | escape }}</p>
     </div>
 
     <div class="waa-services-grid">
       {% for block in section.blocks %}
-        <div class="waa-service-card" {{ block.shopify_attributes }}>
+        <div class="waa-service-card" data-reveal="zoom" data-reveal-delay="{{ forloop.index0 | times: 90 | plus: 120 }}" {{ block.shopify_attributes }}>
           <div class="waa-service-icon waa-icon-{{ block.settings.icon }}">
             {% case block.settings.icon %}
               {% when 'bot' %}
