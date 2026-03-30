@@ -41,17 +41,6 @@
       "id": "secondary_cta_text",
       "label": "Secondary CTA Text",
       "default": "Explore Services"
-    },
-    {
-      "type": "url",
-      "id": "tertiary_cta_link",
-      "label": "Tertiary CTA Link"
-    },
-    {
-      "type": "text",
-      "id": "tertiary_cta_text",
-      "label": "Tertiary CTA Text",
-      "default": "Explore Agents"
     }
   ],
   "presets": [
@@ -111,11 +100,6 @@
         </a>
       {% endif %}
 
-      {% if section.settings.tertiary_cta_text != blank %}
-        <a href="{{ section.settings.tertiary_cta_link | default: '#' }}" class="waa-btn-secondary waa-btn-tertiary">
-          {{ section.settings.tertiary_cta_text | escape }}
-        </a>
-      {% endif %}
     </div>
   </div>
 </section>
@@ -215,7 +199,7 @@
     font-size: clamp(2.8rem, 9vw, 5rem);
     font-weight: 800;
     line-height: 1.05;
-    color: #2dd4bf;
+    color: #ffffff;
     letter-spacing: -0.03em;
     margin-bottom: 28px;
     text-shadow: 0 0 40px rgba(45, 212, 191, 0.3);
