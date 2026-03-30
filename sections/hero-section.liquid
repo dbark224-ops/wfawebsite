@@ -71,7 +71,11 @@
 
     <!-- Heading -->
     <h1 class="waa-title">
-      {% if section.settings.heading contains 'Amplify' %}
+      {% if section.settings.heading contains 'AI agents' %}
+        {{ section.settings.heading | replace: 'AI agents', '<span class="gradient-text">AI agents</span>' }}
+      {% elsif section.settings.heading contains 'AI Agents' %}
+        {{ section.settings.heading | replace: 'AI Agents', '<span class="gradient-text">AI Agents</span>' }}
+      {% elsif section.settings.heading contains 'Amplify' %}
         {{ section.settings.heading | replace: 'Amplify', '<span class="gradient-text">Amplify</span>' }}
       {% else %}
         {{ section.settings.heading | escape }}
@@ -206,7 +210,7 @@
   }
 
   .gradient-text {
-    background: linear-gradient(to right, #2dd4bf, #60a5fa, #a855f7);
+    background: linear-gradient(90deg, #2dd4bf 0%, #5eead4 45%, #99f6e4 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
