@@ -33,6 +33,28 @@
     },
     {
       "type": "header",
+      "content": "Walkthrough video"
+    },
+    {
+      "type": "video_url",
+      "id": "walkthrough_video",
+      "label": "YouTube or Vimeo URL",
+      "accept": ["youtube", "vimeo"]
+    },
+    {
+      "type": "text",
+      "id": "walkthrough_heading",
+      "label": "Video heading",
+      "default": "See the Real Estate AI Agent in action"
+    },
+    {
+      "type": "textarea",
+      "id": "walkthrough_text",
+      "label": "Video supporting text",
+      "default": "A quick walkthrough of how the agent handles inquiries, approvals, reporting, content production, and day-to-day real estate operations."
+    },
+    {
+      "type": "header",
       "content": "UI screenshots"
     },
     {
@@ -148,6 +170,33 @@
       {% endif %}
     </div>
 
+    {% if section.settings.walkthrough_video != blank %}
+      <div class="waa-agent-video" data-reveal="zoom" data-reveal-delay="80">
+        <div class="waa-agent-video-copy">
+          {% if section.settings.walkthrough_heading != blank %}
+            <h3 class="waa-agent-video-title">{{ section.settings.walkthrough_heading | escape }}</h3>
+          {% endif %}
+          {% if section.settings.walkthrough_text != blank %}
+            <p class="waa-agent-video-text">{{ section.settings.walkthrough_text | escape }}</p>
+          {% endif %}
+        </div>
+
+        <div class="waa-agent-video-shell">
+          {% render 'video',
+            video_from_url: true,
+            video: section.settings.walkthrough_video.id,
+            video_type: section.settings.walkthrough_video.type,
+            video_alt: section.settings.walkthrough_heading,
+            video_class: 'waa-agent-video-embed',
+            video_autoplay: false,
+            video_loop: false,
+            loading: 'lazy',
+            section_id: section.id
+          %}
+        </div>
+      </div>
+    {% endif %}
+
     <div class="waa-agent-main">
       <div class="waa-agent-top">
         <div class="waa-agent-grid" data-reveal="left" data-reveal-delay="100">
@@ -249,6 +298,55 @@
     text-decoration: none;
     font-weight: 700;
     box-shadow: 0 10px 28px rgba(23, 152, 173, 0.35);
+  }
+
+  .waa-agent-showcase--{{ section.id }} .waa-agent-video {
+    margin: 0 0 34px;
+    padding: 24px;
+    border-radius: 24px;
+    background: rgba(255,255,255,0.035);
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.24);
+  }
+
+  .waa-agent-showcase--{{ section.id }} .waa-agent-video-copy {
+    margin-bottom: 18px;
+  }
+
+  .waa-agent-showcase--{{ section.id }} .waa-agent-video-title {
+    color: #ffffff;
+    font-size: clamp(1.35rem, 2.4vw, 1.8rem);
+    line-height: 1.2;
+    margin: 0 0 10px;
+  }
+
+  .waa-agent-showcase--{{ section.id }} .waa-agent-video-text {
+    color: #9baec3;
+    margin: 0;
+    line-height: 1.7;
+    font-size: 0.98rem;
+    max-width: 760px;
+  }
+
+  .waa-agent-showcase--{{ section.id }} .waa-agent-video-shell {
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: #08101f;
+  }
+
+  .waa-agent-showcase--{{ section.id }} .waa-agent-video-embed {
+    display: block;
+  }
+
+  .waa-agent-showcase--{{ section.id }} .waa-agent-video-embed iframe,
+  .waa-agent-showcase--{{ section.id }} .waa-agent-video-embed video,
+  .waa-agent-showcase--{{ section.id }} .waa-agent-video-embed .deferred-media__poster-button,
+  .waa-agent-showcase--{{ section.id }} .waa-agent-video-embed .deferred-media__poster-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    display: block;
+    border: 0;
   }
 
   .waa-agent-showcase--{{ section.id }} .waa-agent-main {
