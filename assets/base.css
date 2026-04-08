@@ -34,6 +34,14 @@ html {
   scrollbar-width: thin;
   scrollbar-color: rgb(var(--color-foreground-rgb) / var(--opacity-40)) var(--color-background);
   scroll-behavior: smooth;
+  background: #0f0326;
+}
+
+html,
+body,
+#MainContent,
+.content-for-layout {
+  background-color: #0f0326;
 }
 
 html[scroll-lock] {
