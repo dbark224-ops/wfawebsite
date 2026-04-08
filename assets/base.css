@@ -37,10 +37,7 @@ html {
   background: #0f0326;
 }
 
-html,
-body,
-#MainContent,
-.content-for-layout {
+body {
   background-color: #0f0326;
 }
 
