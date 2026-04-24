@@ -11,6 +11,7 @@
   "sections": {
     "hero_section_AF49tp": {
       "type": "hero-section",
+      "disabled": true,
       "name": "AI Agency Hero",
       "settings": {
         "badge_text": "Custom AI agents for Australian small businesses",
