@@ -1,0 +1,82 @@
+/* WFA visual consistency overrides
+   Keeps footer/newsletter/content pages aligned with the site's dark palette. */
+
+/* Footer newsletter + utilities: force dark background and white copy */
+footer .section-background.color-scheme-5,
+footer .color-scheme-5,
+footer [class*='color-scheme-5'] {
+  background: #0f0326;
+  color: #ffffff;
+}
+
+footer .color-scheme-5 h1,
+footer .color-scheme-5 h2,
+footer .color-scheme-5 h3,
+footer .color-scheme-5 h4,
+footer .color-scheme-5 h5,
+footer .color-scheme-5 h6,
+footer .color-scheme-5 p,
+footer .color-scheme-5 span,
+footer .color-scheme-5 a,
+footer .color-scheme-5 label,
+footer .color-scheme-5 legend,
+footer .color-scheme-5 small {
+  color: #ffffff;
+}
+
+footer .utilities,
+footer .utilities a,
+footer .footer-utilities__text,
+footer .footer-utilities__group-copyright,
+footer .footer-policy-list a,
+footer .social-links a {
+  color: #ffffff;
+}
+
+footer input[type='email'],
+footer .newsletter-form input,
+footer .email-signup input {
+  background: #ffffff;
+  color: #0f0326;
+  border-color: rgba(255,255,255,0.7);
+}
+
+footer input[type='email']::placeholder,
+footer .newsletter-form input::placeholder,
+footer .email-signup input::placeholder {
+  color: rgba(15,3,38,0.7);
+}
+
+footer button,
+footer .button,
+footer .newsletter-form button,
+footer .email-signup button {
+  color: #0f0326;
+}
+
+/* Content Hub / generic page fallback:
+   If a custom page renders with the default light main-page wrapper,
+   keep it on-brand with the dark WFA palette. */
+body[class*='template-page'] .section.page-width-content.color-scheme-1,
+body[class*='template-page'] .section-background.color-scheme-1 {
+  background: #0f0326;
+  color: #ffffff;
+}
+
+body[class*='template-page'] .section.page-width-content.color-scheme-1 h1,
+body[class*='template-page'] .section.page-width-content.color-scheme-1 h2,
+body[class*='template-page'] .section.page-width-content.color-scheme-1 h3,
+body[class*='template-page'] .section.page-width-content.color-scheme-1 p,
+body[class*='template-page'] .section.page-width-content.color-scheme-1 li,
+body[class*='template-page'] .section.page-width-content.color-scheme-1 a {
+  color: #ffffff;
+}
+
+/* Preserve readable form fields on dark pages */
+body[class*='template-page'] .color-scheme-1 input,
+body[class*='template-page'] .color-scheme-1 textarea,
+body[class*='template-page'] .color-scheme-1 select {
+  background: #ffffff;
+  color: #0f0326;
+  border-color: rgba(255,255,255,0.7);
+}
