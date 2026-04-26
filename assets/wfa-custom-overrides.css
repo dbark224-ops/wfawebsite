@@ -2,13 +2,37 @@
    Keeps footer/newsletter/content pages aligned with the site's dark palette. */
 
 /* Footer newsletter + utilities: force dark background and white copy */
+footer .section-background.color-scheme-4,
 footer .section-background.color-scheme-5,
+footer .color-scheme-4,
 footer .color-scheme-5,
+footer [class*='color-scheme-4'],
 footer [class*='color-scheme-5'] {
   background: #0f0326;
   color: #ffffff;
+  --color-background: #0f0326;
+  --color-background-rgb: 15, 3, 38;
+  --color-foreground: #ffffff;
+  --color-foreground-rgb: 255, 255, 255;
+  --color-foreground-heading: #ffffff;
+  --color-foreground-heading-rgb: 255, 255, 255;
+  --color-foreground-muted: rgba(255, 255, 255, 0.78);
+  --color-border: rgba(255, 255, 255, 0.16);
+  --color-border-rgb: 255, 255, 255;
 }
 
+footer .color-scheme-4 h1,
+footer .color-scheme-4 h2,
+footer .color-scheme-4 h3,
+footer .color-scheme-4 h4,
+footer .color-scheme-4 h5,
+footer .color-scheme-4 h6,
+footer .color-scheme-4 p,
+footer .color-scheme-4 span,
+footer .color-scheme-4 a,
+footer .color-scheme-4 label,
+footer .color-scheme-4 legend,
+footer .color-scheme-4 small,
 footer .color-scheme-5 h1,
 footer .color-scheme-5 h2,
 footer .color-scheme-5 h3,
@@ -29,8 +53,13 @@ footer .utilities a,
 footer .footer-utilities__text,
 footer .footer-utilities__group-copyright,
 footer .footer-policy-list a,
-footer .social-links a {
+footer .social-links a,
+footer .social-links svg,
+footer .social-links path,
+footer .shopify-policy__title,
+footer [data-testid='footer-utilities'] * {
   color: #ffffff;
+  fill: currentColor;
 }
 
 footer input[type='email'],
