@@ -1,13 +1,15 @@
 /* WFA visual consistency overrides
    Keeps footer/newsletter/content pages aligned with the site's dark palette. */
 
-/* Footer newsletter + utilities: force dark background and white copy */
-footer .section-background.color-scheme-4,
-footer .section-background.color-scheme-5,
-footer .color-scheme-4,
-footer .color-scheme-5,
-footer [class*='color-scheme-4'],
-footer [class*='color-scheme-5'] {
+/* Footer newsletter + utilities:
+   target the actual footer section wrappers/background layers without overriding
+   every nested element/container in the footer. */
+footer > .shopify-section-group-footer-group > .shopify-section,
+footer > .shopify-section-group-footer-group > .footer-utilities,
+footer > .shopify-section-group-footer-group .section-background.color-scheme-4,
+footer > .shopify-section-group-footer-group .section-background.color-scheme-5,
+footer > .shopify-section-group-footer-group .section.color-scheme-4,
+footer > .shopify-section-group-footer-group .section.color-scheme-5 {
   background: #0f0326;
   color: #ffffff;
   --color-background: #0f0326;
@@ -21,65 +23,64 @@ footer [class*='color-scheme-5'] {
   --color-border-rgb: 255, 255, 255;
 }
 
-footer .color-scheme-4 h1,
-footer .color-scheme-4 h2,
-footer .color-scheme-4 h3,
-footer .color-scheme-4 h4,
-footer .color-scheme-4 h5,
-footer .color-scheme-4 h6,
-footer .color-scheme-4 p,
-footer .color-scheme-4 span,
-footer .color-scheme-4 a,
-footer .color-scheme-4 label,
-footer .color-scheme-4 legend,
-footer .color-scheme-4 small,
-footer .color-scheme-5 h1,
-footer .color-scheme-5 h2,
-footer .color-scheme-5 h3,
-footer .color-scheme-5 h4,
-footer .color-scheme-5 h5,
-footer .color-scheme-5 h6,
-footer .color-scheme-5 p,
-footer .color-scheme-5 span,
-footer .color-scheme-5 a,
-footer .color-scheme-5 label,
-footer .color-scheme-5 legend,
-footer .color-scheme-5 small {
+footer > .shopify-section-group-footer-group .section.color-scheme-4 h1,
+footer > .shopify-section-group-footer-group .section.color-scheme-4 h2,
+footer > .shopify-section-group-footer-group .section.color-scheme-4 h3,
+footer > .shopify-section-group-footer-group .section.color-scheme-4 h4,
+footer > .shopify-section-group-footer-group .section.color-scheme-4 h5,
+footer > .shopify-section-group-footer-group .section.color-scheme-4 h6,
+footer > .shopify-section-group-footer-group .section.color-scheme-4 p,
+footer > .shopify-section-group-footer-group .section.color-scheme-4 span,
+footer > .shopify-section-group-footer-group .section.color-scheme-4 a,
+footer > .shopify-section-group-footer-group .section.color-scheme-4 label,
+footer > .shopify-section-group-footer-group .section.color-scheme-4 legend,
+footer > .shopify-section-group-footer-group .section.color-scheme-4 small,
+footer > .shopify-section-group-footer-group .section.color-scheme-5 h1,
+footer > .shopify-section-group-footer-group .section.color-scheme-5 h2,
+footer > .shopify-section-group-footer-group .section.color-scheme-5 h3,
+footer > .shopify-section-group-footer-group .section.color-scheme-5 h4,
+footer > .shopify-section-group-footer-group .section.color-scheme-5 h5,
+footer > .shopify-section-group-footer-group .section.color-scheme-5 h6,
+footer > .shopify-section-group-footer-group .section.color-scheme-5 p,
+footer > .shopify-section-group-footer-group .section.color-scheme-5 span,
+footer > .shopify-section-group-footer-group .section.color-scheme-5 a,
+footer > .shopify-section-group-footer-group .section.color-scheme-5 label,
+footer > .shopify-section-group-footer-group .section.color-scheme-5 legend,
+footer > .shopify-section-group-footer-group .section.color-scheme-5 small {
   color: #ffffff;
 }
 
-footer .utilities,
-footer .utilities a,
-footer .footer-utilities__text,
-footer .footer-utilities__group-copyright,
-footer .footer-policy-list a,
-footer .social-links a,
-footer .social-links svg,
-footer .social-links path,
-footer .shopify-policy__title,
-footer [data-testid='footer-utilities'] * {
+footer > .shopify-section-group-footer-group .utilities,
+footer > .shopify-section-group-footer-group .utilities a,
+footer > .shopify-section-group-footer-group .footer-utilities__text,
+footer > .shopify-section-group-footer-group .footer-utilities__group-copyright,
+footer > .shopify-section-group-footer-group .footer-policy-list a,
+footer > .shopify-section-group-footer-group .social-links a,
+footer > .shopify-section-group-footer-group .social-icons__icon,
+footer > .shopify-section-group-footer-group .social-icons__icon path,
+footer > .shopify-section-group-footer-group .policy-list-trigger {
   color: #ffffff;
   fill: currentColor;
 }
 
-footer input[type='email'],
-footer .newsletter-form input,
-footer .email-signup input {
+footer > .shopify-section-group-footer-group input[type='email'],
+footer > .shopify-section-group-footer-group .newsletter-form input,
+footer > .shopify-section-group-footer-group .email-signup input {
   background: #ffffff;
   color: #0f0326;
   border-color: rgba(255,255,255,0.7);
 }
 
-footer input[type='email']::placeholder,
-footer .newsletter-form input::placeholder,
-footer .email-signup input::placeholder {
+footer > .shopify-section-group-footer-group input[type='email']::placeholder,
+footer > .shopify-section-group-footer-group .newsletter-form input::placeholder,
+footer > .shopify-section-group-footer-group .email-signup input::placeholder {
   color: rgba(15,3,38,0.7);
 }
 
-footer button,
-footer .button,
-footer .newsletter-form button,
-footer .email-signup button {
+footer > .shopify-section-group-footer-group button,
+footer > .shopify-section-group-footer-group .button,
+footer > .shopify-section-group-footer-group .newsletter-form button,
+footer > .shopify-section-group-footer-group .email-signup button {
   color: #0f0326;
 }
 
