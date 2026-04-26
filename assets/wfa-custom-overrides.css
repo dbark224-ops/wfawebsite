@@ -84,6 +84,15 @@ footer > .shopify-section-group-footer-group .email-signup button {
   color: #0f0326;
 }
 
+/* Book discovery call page:
+   the main-page section is disabled, so force the template/body area behind the
+   embedded form section to the same WFA blue. */
+body[class*='template-page-book-discovery-call'],
+body[class*='template-page-book-discovery-call'] #MainContent,
+body[class*='template-page-book-discovery-call'] .content-for-layout {
+  background: #0f0326;
+}
+
 /* Content Hub / generic page fallback:
    If a custom page renders with the default light main-page wrapper,
    keep it on-brand with the dark WFA palette. */
