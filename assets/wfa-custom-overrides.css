@@ -94,6 +94,52 @@ main[data-template*='page.book-discovery-call'] + footer {
   background: #0f0326;
 }
 
+/* Daily newsletter page:
+   this page uses a custom section with its own hardcoded light palette,
+   so override that section directly for the dark WFA treatment. */
+main[data-template*='page.workflow-wire-signup'],
+main[data-template*='page.workflow-wire-signup'] > .shopify-section,
+main[data-template*='page.workflow-wire-signup'] .section-background.color-scheme-5,
+main[data-template*='page.workflow-wire-signup'] .section.page-width-content.color-scheme-5,
+main[data-template*='page.workflow-wire-signup'] #wfa-newsletter-landing-wfa_newsletter_landing_jiNhhF {
+  background: #0f0326;
+  color: #ffffff;
+}
+
+main[data-template*='page.workflow-wire-signup'] #wfa-newsletter-landing-wfa_newsletter_landing_jiNhhF {
+  --wfa-dark: #0f0326;
+  --wfa-light: #f1efe7;
+  --wfa-cream: #f7f3ec;
+  --wfa-border: rgba(255, 255, 255, 0.14);
+  --wfa-text-soft: rgba(241, 239, 231, 0.8);
+  background: #0f0326;
+}
+
+main[data-template*='page.workflow-wire-signup'] #wfa-newsletter-landing-wfa_newsletter_landing_jiNhhF .wfa-newsletter-landing__content,
+main[data-template*='page.workflow-wire-signup'] #wfa-newsletter-landing-wfa_newsletter_landing_jiNhhF .wfa-newsletter-landing__benefits,
+main[data-template*='page.workflow-wire-signup'] #wfa-newsletter-landing-wfa_newsletter_landing_jiNhhF .wfa-newsletter-landing__preview-card {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: none;
+}
+
+main[data-template*='page.workflow-wire-signup'] #wfa-newsletter-landing-wfa_newsletter_landing_jiNhhF .wfa-newsletter-landing__eyebrow,
+main[data-template*='page.workflow-wire-signup'] #wfa-newsletter-landing-wfa_newsletter_landing_jiNhhF .wfa-newsletter-landing__heading,
+main[data-template*='page.workflow-wire-signup'] #wfa-newsletter-landing-wfa_newsletter_landing_jiNhhF .wfa-newsletter-landing__subheading,
+main[data-template*='page.workflow-wire-signup'] #wfa-newsletter-landing-wfa_newsletter_landing_jiNhhF .wfa-newsletter-landing__benefit-title,
+main[data-template*='page.workflow-wire-signup'] #wfa-newsletter-landing-wfa_newsletter_landing_jiNhhF .wfa-newsletter-landing__benefit-list,
+main[data-template*='page.workflow-wire-signup'] #wfa-newsletter-landing-wfa_newsletter_landing_jiNhhF .wfa-newsletter-landing__benefit-list li,
+main[data-template*='page.workflow-wire-signup'] #wfa-newsletter-landing-wfa_newsletter_landing_jiNhhF .wfa-newsletter-landing__supporting-text,
+main[data-template*='page.workflow-wire-signup'] #wfa-newsletter-landing-wfa_newsletter_landing_jiNhhF .wfa-newsletter-landing__story-headline,
+main[data-template*='page.workflow-wire-signup'] #wfa-newsletter-landing-wfa_newsletter_landing_jiNhhF .wfa-newsletter-landing__story-summary,
+main[data-template*='page.workflow-wire-signup'] #wfa-newsletter-landing-wfa_newsletter_landing_jiNhhF .wfa-newsletter-landing__story-takeaway {
+  color: #ffffff;
+}
+
+main[data-template*='page.workflow-wire-signup'] #wfa-newsletter-landing-wfa_newsletter_landing_jiNhhF .wfa-newsletter-landing__story {
+  border-bottom-color: rgba(255, 255, 255, 0.12);
+}
+
 /* Content Hub / generic page fallback:
    If a custom page renders with the default light main-page wrapper,
    keep it on-brand with the dark WFA palette. */
