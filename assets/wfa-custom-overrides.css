@@ -85,11 +85,12 @@ footer > .shopify-section-group-footer-group .email-signup button {
 }
 
 /* Book discovery call page:
-   the main-page section is disabled, so force the template/body area behind the
-   embedded form section to the same WFA blue. */
-body[class*='template-page-book-discovery-call'],
-body[class*='template-page-book-discovery-call'] #MainContent,
-body[class*='template-page-book-discovery-call'] .content-for-layout {
+   the main-page section is disabled, so target the actual rendered template
+   attribute on <main> instead of guessing body classes. */
+main[data-template*='page.book-discovery-call'],
+main[data-template*='page.book-discovery-call'].content-for-layout,
+main[data-template*='page.book-discovery-call'] > .shopify-section,
+main[data-template*='page.book-discovery-call'] + footer {
   background: #0f0326;
 }
 
