@@ -98,6 +98,11 @@
         "type": "shopify://apps/microsoft-clarity/blocks/clarity_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
         "disabled": false,
         "settings": {}
+      },
+      "6671825970141769053": {
+        "type": "shopify://apps/hoppy-appointments/blocks/appointment_calendar/60b64a0e-7936-41c3-ad56-959d5bdc98a4",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_schemes": {
