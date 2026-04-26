@@ -27,10 +27,10 @@
           "type": "shopify://apps/hoppy-appointments/blocks/appointment_calendar_block/60b64a0e-7936-41c3-ad56-959d5bdc98a4",
           "settings": {
             "service-id": "15d70d81-f219-468d-9ad3-3ed3fdd8b22b",
-            "embed_mode": "direct",
+            "embed_mode": "modal",
             "title_color": "#ffffff",
             "title_font_size": 24,
-            "price_color": "#000000",
+            "price_color": "#0f0326",
             "price_font_size": 12,
             "option_color": "#ffffff",
             "option_font_size": 14,
@@ -49,16 +49,16 @@
         "hoppy_appointments_appointment_calendar_block_VFCPb7"
       ],
       "settings": {
-        "content_direction": "column",
+        "content_direction": "row",
         "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
+        "horizontal_alignment": "center",
         "vertical_alignment": "center",
         "align_baseline": false,
         "horizontal_alignment_flex_direction_column": "center",
         "vertical_alignment_flex_direction_column": "center",
-        "gap": 12,
-        "section_width": "page-width",
-        "section_height": "large",
+        "gap": 0,
+        "section_width": "full-width",
+        "section_height": "medium",
         "section_height_custom": 50,
         "color_scheme": "scheme-5",
         "background_media": "none",
@@ -72,8 +72,8 @@
         "overlay_color": "#00000026",
         "overlay_style": "solid",
         "gradient_direction": "to top",
-        "padding-block-start": 100,
-        "padding-block-end": 100
+        "padding-block-start": 0,
+        "padding-block-end": 0
       }
     }
   },
