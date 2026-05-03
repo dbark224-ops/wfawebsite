@@ -143,25 +143,57 @@ main[data-template*='page.workflow-wire-signup'] #wfa-newsletter-landing-wfa_new
 /* Content Hub / generic page fallback:
    If a custom page renders with the default light main-page wrapper,
    keep it on-brand with the dark WFA palette. */
-body[class*='template-page'] .section.page-width-content.color-scheme-1,
-body[class*='template-page'] .section-background.color-scheme-1 {
+main[data-template*='page.'] .section.page-width-content.color-scheme-1,
+main[data-template*='page.'] .section-background.color-scheme-1 {
   background: #0f0326;
   color: #ffffff;
 }
 
-body[class*='template-page'] .section.page-width-content.color-scheme-1 h1,
-body[class*='template-page'] .section.page-width-content.color-scheme-1 h2,
-body[class*='template-page'] .section.page-width-content.color-scheme-1 h3,
-body[class*='template-page'] .section.page-width-content.color-scheme-1 p,
-body[class*='template-page'] .section.page-width-content.color-scheme-1 li,
-body[class*='template-page'] .section.page-width-content.color-scheme-1 a {
+main[data-template*='page.'] .section.page-width-content.color-scheme-1 h1,
+main[data-template*='page.'] .section.page-width-content.color-scheme-1 h2,
+main[data-template*='page.'] .section.page-width-content.color-scheme-1 h3,
+main[data-template*='page.'] .section.page-width-content.color-scheme-1 p,
+main[data-template*='page.'] .section.page-width-content.color-scheme-1 li,
+main[data-template*='page.'] .section.page-width-content.color-scheme-1 a {
+  color: #ffffff;
+}
+
+/* Contact page:
+   force the page wrapper + section backgrounds onto the WFA dark palette
+   because this template was rendering a light background despite scheme-5. */
+main[data-template*='page.contact'],
+main[data-template*='page.contact'] > .shopify-section,
+main[data-template*='page.contact'] .section-background,
+main[data-template*='page.contact'] .section.page-width-content,
+main[data-template*='page.contact'] .section.color-scheme-5,
+main[data-template*='page.contact'] .section-background.color-scheme-5 {
+  background: #0f0326;
+  color: #ffffff;
+  --color-background: #0f0326;
+  --color-background-rgb: 15, 3, 38;
+  --color-foreground: #ffffff;
+  --color-foreground-rgb: 255, 255, 255;
+  --color-foreground-heading: #ffffff;
+  --color-foreground-heading-rgb: 255, 255, 255;
+}
+
+main[data-template*='page.contact'] h1,
+main[data-template*='page.contact'] h2,
+main[data-template*='page.contact'] h3,
+main[data-template*='page.contact'] p,
+main[data-template*='page.contact'] label,
+main[data-template*='page.contact'] legend,
+main[data-template*='page.contact'] a {
   color: #ffffff;
 }
 
 /* Preserve readable form fields on dark pages */
-body[class*='template-page'] .color-scheme-1 input,
-body[class*='template-page'] .color-scheme-1 textarea,
-body[class*='template-page'] .color-scheme-1 select {
+main[data-template*='page.'] .color-scheme-1 input,
+main[data-template*='page.'] .color-scheme-1 textarea,
+main[data-template*='page.'] .color-scheme-1 select,
+main[data-template*='page.contact'] input,
+main[data-template*='page.contact'] textarea,
+main[data-template*='page.contact'] select {
   background: #ffffff;
   color: #0f0326;
   border-color: rgba(255,255,255,0.7);
