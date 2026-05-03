@@ -225,3 +225,63 @@ main[data-template*='page.websites'] .product-card__content,
 main[data-template*='page.websites'] .price {
   color: #ffffff;
 }
+
+/* Default product page:
+   keep product detail and recommendation sections on the WFA dark palette
+   even when the product template falls back to empty/default theme color variables. */
+main[data-template*='product'],
+main[data-template*='product'] > .shopify-section,
+main[data-template*='product'] .section-background,
+main[data-template*='product'] .product-information.section,
+main[data-template*='product'] .product-recommendations.section,
+main[data-template*='product'] .product-details > .group-block,
+main[data-template*='product'] .product-grid__card,
+main[data-template*='product'] .product-card,
+main[data-template*='product'] .product-card__content {
+  background: #0f0326;
+  color: #ffffff;
+  --color-background: #0f0326;
+  --color-background-rgb: 15, 3, 38;
+  --color-foreground: #ffffff;
+  --color-foreground-rgb: 255, 255, 255;
+  --color-foreground-heading: #ffffff;
+  --color-foreground-heading-rgb: 255, 255, 255;
+  --color-border: rgba(255, 255, 255, 0.14);
+  --color-border-rgb: 255, 255, 255;
+}
+
+main[data-template*='product'] .product-information.section,
+main[data-template*='product'] .product-recommendations.section,
+main[data-template*='product'] .product-details > .group-block {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+main[data-template*='product'] h1,
+main[data-template*='product'] h2,
+main[data-template*='product'] h3,
+main[data-template*='product'] h4,
+main[data-template*='product'] h5,
+main[data-template*='product'] p,
+main[data-template*='product'] li,
+main[data-template*='product'] a,
+main[data-template*='product'] label,
+main[data-template*='product'] legend,
+main[data-template*='product'] .price,
+main[data-template*='product'] .product-title,
+main[data-template*='product'] .product-card__title,
+main[data-template*='product'] .quantity-label,
+main[data-template*='product'] .quantity-rules,
+main[data-template*='product'] .shopify-payment-button__more-options {
+  color: #ffffff;
+}
+
+main[data-template*='product'] input,
+main[data-template*='product'] textarea,
+main[data-template*='product'] select,
+main[data-template*='product'] .quantity-input,
+main[data-template*='product'] .field__input,
+main[data-template*='product'] .quantity-selector {
+  background: #ffffff;
+  color: #0f0326;
+  border-color: rgba(255,255,255,0.7);
+}
