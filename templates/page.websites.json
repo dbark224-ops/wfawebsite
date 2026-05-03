@@ -15,13 +15,33 @@
       "settings": {
         "content_direction": "column",
         "gap": 32,
-        "color_scheme": "scheme-5",
+        "color_scheme": "",
         "padding-block-start": 40,
         "padding-block-end": 80
       }
+    },
+    "websites_showcase": {
+      "type": "websites-showcase",
+      "name": "Websites Showcase",
+      "settings": {
+        "eyebrow": "Websites",
+        "heading": "Modern, high-converting websites for Australian small businesses.",
+        "intro": "We build clean, modern websites that help small businesses look more credible, explain their offer clearly, and turn more traffic into enquiries, calls, and bookings.",
+        "primary_cta_label": "Book a discovery call",
+        "primary_cta_link": "/pages/contact"
+      }
+    },
+    "featured_product_payment": {
+      "type": "featured-product",
+      "name": "Website payment product",
+      "settings": {
+        "product": "",
+        "layout": "media-left",
+        "color_scheme": "scheme-5",
+        "padding-block-start": 16,
+        "padding-block-end": 72
+      }
     }
   },
-  "order": [
-    "main"
-  ]
+  "order": ["main", "websites_showcase", "featured_product_payment"]
 }

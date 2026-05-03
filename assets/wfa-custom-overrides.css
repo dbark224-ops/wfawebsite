@@ -198,3 +198,30 @@ main[data-template*='page.contact'] select {
   color: #0f0326;
   border-color: rgba(255,255,255,0.7);
 }
+
+/* Websites page:
+   keep the overall page and any theme-editor-added sections on-brand,
+   especially when Shopify tries to render default white page wrappers. */
+main[data-template*='page.websites'],
+main[data-template*='page.websites'] > .shopify-section,
+main[data-template*='page.websites'] .section-background,
+main[data-template*='page.websites'] .section.page-width-content,
+main[data-template*='page.websites'] .section.color-scheme-5,
+main[data-template*='page.websites'] .section-background.color-scheme-5,
+main[data-template*='page.websites'] .featured-product-section,
+main[data-template*='page.websites'] .featured-product-section .section-content-wrapper,
+main[data-template*='page.websites'] .featured-product-section .product-grid__card {
+  background: #0f0326;
+  color: #ffffff;
+}
+
+main[data-template*='page.websites'] h1,
+main[data-template*='page.websites'] h2,
+main[data-template*='page.websites'] h3,
+main[data-template*='page.websites'] p,
+main[data-template*='page.websites'] li,
+main[data-template*='page.websites'] a,
+main[data-template*='page.websites'] .product-card__content,
+main[data-template*='page.websites'] .price {
+  color: #ffffff;
+}

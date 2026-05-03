@@ -1,0 +1,227 @@
+{% schema %}
+{
+  "name": "Websites Showcase",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Websites"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Modern, high-converting websites for Australian small businesses."
+    },
+    {
+      "type": "textarea",
+      "id": "intro",
+      "label": "Intro",
+      "default": "We design and build clean, professional websites that make your business look credible, explain your offer clearly, and turn more visitors into real enquiries or bookings."
+    },
+    {
+      "type": "text",
+      "id": "primary_cta_label",
+      "label": "Primary CTA label",
+      "default": "Book a discovery call"
+    },
+    {
+      "type": "url",
+      "id": "primary_cta_link",
+      "label": "Primary CTA link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Websites Showcase"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="wfa-websites wfa-websites--{{ section.id }}">
+  <div class="wfa-websites__container">
+    <div class="wfa-websites__hero">
+      <p class="wfa-websites__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      <h1 class="wfa-websites__title">{{ section.settings.heading | escape }}</h1>
+      <p class="wfa-websites__intro">{{ section.settings.intro | escape }}</p>
+
+      <div class="wfa-websites__hero-actions">
+        <a href="{{ section.settings.primary_cta_link | default: '/pages/contact' }}" class="wfa-websites__button wfa-websites__button--primary">{{ section.settings.primary_cta_label | escape }}</a>
+        <a href="#website-demos" class="wfa-websites__button wfa-websites__button--secondary">View demo sites</a>
+      </div>
+    </div>
+
+    <div class="wfa-websites__grid">
+      <article class="wfa-websites__card">
+        <h2>Built to convert, not just look nice</h2>
+        <p>Your website should help people trust you quickly, understand what you do, and take the next step without confusion.</p>
+      </article>
+      <article class="wfa-websites__card">
+        <h2>Designed for real small business needs</h2>
+        <p>We focus on clear messaging, strong mobile design, fast-loading layouts, and practical calls to action that suit service businesses.</p>
+      </article>
+      <article class="wfa-websites__card">
+        <h2>Custom work, not generic fluff</h2>
+        <p>Whether you need a polished brochure site, a lead-gen landing page, or a more premium web presence, we tailor the build to your business.</p>
+      </article>
+    </div>
+
+    <div id="website-demos" class="wfa-websites__demos">
+      <div class="wfa-websites__section-heading">
+        <p class="wfa-websites__kicker">Demo sites</p>
+        <h2>See a few example directions</h2>
+        <p>These are sample builds to show the kind of modern, conversion-focused sites we can create.</p>
+      </div>
+
+      <div class="wfa-websites__demo-grid">
+        <article class="wfa-websites__demo-card">
+          <h3>Oak & Iron Carpentry</h3>
+          <p>A clean trade-services demo with strong trust cues, clear service framing, and simple lead-generation flow.</p>
+          <a href="https://demosites.polished-bread-98a6.workers.dev/oak-iron-carpentry/" class="wfa-websites__button wfa-websites__button--demo" target="_blank" rel="noopener">View carpentry demo</a>
+        </article>
+
+        <article class="wfa-websites__demo-card">
+          <h3>Mesa Dental</h3>
+          <p>A more polished healthcare-style demo focused on clarity, professionalism, and easy next-step booking intent.</p>
+          <a href="https://demosites.polished-bread-98a6.workers.dev/mesa-dental/" class="wfa-websites__button wfa-websites__button--demo" target="_blank" rel="noopener">View dental demo</a>
+        </article>
+
+        <article class="wfa-websites__demo-card">
+          <h3>Mesa Stone</h3>
+          <p>A premium services demo with a stronger visual feel for higher-ticket offers and more design-led positioning.</p>
+          <a href="https://demosites.polished-bread-98a6.workers.dev/mesa-stone/" class="wfa-websites__button wfa-websites__button--demo" target="_blank" rel="noopener">View stone demo</a>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .wfa-websites--{{ section.id }} {
+    background: #0f0326;
+    color: #f1efe7;
+    padding: 88px 0 40px;
+  }
+
+  .wfa-websites--{{ section.id }} .wfa-websites__container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .wfa-websites--{{ section.id }} .wfa-websites__hero {
+    max-width: 760px;
+    margin-bottom: 56px;
+  }
+
+  .wfa-websites--{{ section.id }} .wfa-websites__eyebrow,
+  .wfa-websites--{{ section.id }} .wfa-websites__kicker {
+    margin: 0 0 14px;
+    color: #8bd6ff;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .wfa-websites--{{ section.id }} .wfa-websites__title {
+    margin: 0 0 20px;
+    color: #ffffff;
+    font-size: clamp(2.6rem, 7vw, 4.4rem);
+    line-height: 1.04;
+    letter-spacing: -0.03em;
+  }
+
+  .wfa-websites--{{ section.id }} .wfa-websites__intro,
+  .wfa-websites--{{ section.id }} .wfa-websites__section-heading p,
+  .wfa-websites--{{ section.id }} .wfa-websites__card p,
+  .wfa-websites--{{ section.id }} .wfa-websites__demo-card p {
+    color: rgba(241, 239, 231, 0.78);
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  .wfa-websites--{{ section.id }} .wfa-websites__hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 28px;
+  }
+
+  .wfa-websites--{{ section.id }} .wfa-websites__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 12px 20px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+
+  .wfa-websites--{{ section.id }} .wfa-websites__button--primary,
+  .wfa-websites--{{ section.id }} .wfa-websites__button--demo {
+    background: #f1efe7;
+    color: #0f0326;
+  }
+
+  .wfa-websites--{{ section.id }} .wfa-websites__button--primary:hover,
+  .wfa-websites--{{ section.id }} .wfa-websites__button--demo:hover {
+    background: #ffffff;
+    transform: translateY(-1px);
+  }
+
+  .wfa-websites--{{ section.id }} .wfa-websites__button--secondary {
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.04);
+    color: #ffffff;
+  }
+
+  .wfa-websites--{{ section.id }} .wfa-websites__button--secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .wfa-websites--{{ section.id }} .wfa-websites__grid,
+  .wfa-websites--{{ section.id }} .wfa-websites__demo-grid {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  .wfa-websites--{{ section.id }} .wfa-websites__card,
+  .wfa-websites--{{ section.id }} .wfa-websites__demo-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 28px;
+    backdrop-filter: blur(12px);
+  }
+
+  .wfa-websites--{{ section.id }} .wfa-websites__card h2,
+  .wfa-websites--{{ section.id }} .wfa-websites__demo-card h3,
+  .wfa-websites--{{ section.id }} .wfa-websites__section-heading h2 {
+    color: #ffffff;
+    margin: 0 0 12px;
+    line-height: 1.2;
+  }
+
+  .wfa-websites--{{ section.id }} .wfa-websites__demos {
+    margin-top: 72px;
+  }
+
+  .wfa-websites--{{ section.id }} .wfa-websites__section-heading {
+    max-width: 720px;
+    margin-bottom: 28px;
+  }
+
+  @media (min-width: 768px) {
+    .wfa-websites--{{ section.id }} .wfa-websites__grid,
+    .wfa-websites--{{ section.id }} .wfa-websites__demo-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>
