@@ -256,7 +256,7 @@
       },
       "name": "t:names.featured_product_information",
       "settings": {
-        "product": "website-design-publishing-management-and-hosting",
+        "product": "web_design",
         "content_width": "content-center-aligned",
         "desktop_media_position": "left",
         "equal_columns": true,
